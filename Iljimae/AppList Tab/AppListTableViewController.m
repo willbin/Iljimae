@@ -8,6 +8,7 @@
 
 #import "AppListTableViewController.h"
 #import "AppList.h"
+#import "AppListTableCell.h"
 
 @implementation AppListTableViewController
 @synthesize appList;
@@ -40,7 +41,6 @@
     [super viewDidLoad];
     
     appList = get_application_list(true);
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -72,11 +72,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    AppListTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AppListTableCell"];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[AppListTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AppListTableCell"];
     }
+    NSDictionary* dict = [self.appList objectAtIndex:[indexPath row]];
+    cell.appName.text = [dict objectForKey:@"ApplicationDisplayName"];
+    cell.appVersion.text = [dict objectForKey:@"ApplicationVersion"];
+    [cell.appImage setImage:[UIImage imageNamed:[dict objectForKey:@"ApplicationIcon"]]];
+    NSLog(@"[SWAG1223 %@", cell.appName.text);  
     
     // Configure the cell...
     
