@@ -11,15 +11,14 @@
 @interface Application : NSObject
 {
     NSString *name, *version, *iconPath;
-    NSData *icon;
+    UIImage *icon;
 }
 
 - (NSString *)name;
 - (NSString *)version;
-- (NSData *)icon;
+- (UIImage *)icon;
 - (NSString *)iconPath;
 
 - (id)initWithName:(NSString *)_name version:(NSString *)_version iconPath:(NSString *)_iconPath;
-- (void)setIconWithData:(NSData *)_icon;
 
 @end

@@ -31,19 +31,15 @@
     return version;
 }
 
-- (NSData *)icon
+- (UIImage *)icon
 {
+    icon = [UIImage imageWithContentsOfFile:iconPath];
     return icon;
 }
 
 - (NSString *)iconPath
 {
     return iconPath;
-}
-
-- (void)setIconWithData:(NSData *)_icon
-{
-    icon = _icon;
 }
 
 @end

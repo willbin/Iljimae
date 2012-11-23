@@ -79,9 +79,9 @@
     
     Application *app = [[Application alloc] initWithName:[dict objectForKey:@"ApplicationDisplayName"] version:[dict objectForKey:@"ApplicationVersion"] iconPath:[dict objectForKey:@"ApplicationIcon"]];
     
+    cell.imageView.image = [app icon];
     cell.textLabel.text = [app name];
     cell.version = [app version];
-    cell.imageView.image = [UIImage imageWithContentsOfFile:[app iconPath]];
     
     return cell;
 }
