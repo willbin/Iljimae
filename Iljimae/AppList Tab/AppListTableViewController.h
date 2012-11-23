@@ -10,4 +10,6 @@
 
 @interface AppListTableViewController : UITableViewController
 
+@property NSArray* appList;
+
 @end

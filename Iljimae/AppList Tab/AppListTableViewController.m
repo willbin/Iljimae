@@ -7,12 +7,10 @@
 //
 
 #import "AppListTableViewController.h"
-
-@interface AppListTableViewController ()
-
-@end
+#import "AppList.h"
 
 @implementation AppListTableViewController
+@synthesize appList;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -22,11 +20,27 @@
     }
     return self;
 }
+ 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+#warning this is screwed up, please fix it 
+    UINavigationBar* bar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 44.0f)];
+    UILabel* title = [[UILabel alloc] initWithFrame:CGRectMake(80, 2, 220, 25)];
+    title.font = [UIFont fontWithName:@"Arial-BoldMT" size:18];
+    title.adjustsFontSizeToFitWidth = YES;
+    title.text = @"Apps";
+    title.backgroundColor = [UIColor clearColor];
+    [bar addSubview:title];
+
+    [self.tableView addSubview:bar];     
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    appList = get_application_list(true);
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -46,14 +60,14 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
+//#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.appList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

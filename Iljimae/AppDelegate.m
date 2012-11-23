@@ -15,6 +15,7 @@
 #import "SettingsTableViewController.h"
 
 @implementation AppDelegate
+@synthesize window, tabBarController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -41,7 +42,7 @@
         settingsTVC.title = @"Settings";
     }
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = @[appListTVC, crackTVC, settingsTVC];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:appListTVC, crackTVC, settingsTVC, nil];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;

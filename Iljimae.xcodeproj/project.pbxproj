@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD0873F9165F39CE00EA46AD /* AppList.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0873F8165F39CE00EA46AD /* AppList.m */; };
+		AD0873FC165F3A0000EA46AD /* ClutchConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0873FB165F3A0000EA46AD /* ClutchConfiguration.m */; };
+		AD0873FE165F3AF200EA46AD /* AppListTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD0873FD165F3AF200EA46AD /* AppListTableCell.xib */; };
+		AD087401165F3B1D00EA46AD /* AppListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD087400165F3B1D00EA46AD /* AppListTableCell.m */; };
 		E91ED015165F2C8A002AB7B4 /* AppListTableViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E91ED00D165F2C8A002AB7B4 /* AppListTableViewController_iPad.xib */; };
 		E91ED016165F2C8A002AB7B4 /* AppListTableViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = E91ED00E165F2C8A002AB7B4 /* AppListTableViewController_iPhone.xib */; };
 		E91ED017165F2C8A002AB7B4 /* AppListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E91ED010165F2C8A002AB7B4 /* AppListTableViewController.m */; };
@@ -31,6 +35,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AD0873F7165F39CE00EA46AD /* AppList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppList.h; path = Clutch/AppList.h; sourceTree = "<group>"; };
+		AD0873F8165F39CE00EA46AD /* AppList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppList.m; path = Clutch/AppList.m; sourceTree = "<group>"; };
+		AD0873FA165F3A0000EA46AD /* ClutchConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClutchConfiguration.h; sourceTree = "<group>"; };
+		AD0873FB165F3A0000EA46AD /* ClutchConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClutchConfiguration.m; sourceTree = "<group>"; };
+		AD0873FD165F3AF200EA46AD /* AppListTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppListTableCell.xib; sourceTree = "<group>"; };
+		AD0873FF165F3B1D00EA46AD /* AppListTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppListTableCell.h; path = "AppList Tab/AppListTableCell.h"; sourceTree = "<group>"; };
+		AD087400165F3B1D00EA46AD /* AppListTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppListTableCell.m; path = "AppList Tab/AppListTableCell.m"; sourceTree = "<group>"; };
 		E91ED00D165F2C8A002AB7B4 /* AppListTableViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AppListTableViewController_iPad.xib; path = "AppList Tab/AppListTableViewController_iPad.xib"; sourceTree = "<group>"; };
 		E91ED00E165F2C8A002AB7B4 /* AppListTableViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AppListTableViewController_iPhone.xib; path = "AppList Tab/AppListTableViewController_iPhone.xib"; sourceTree = "<group>"; };
 		E91ED00F165F2C8A002AB7B4 /* AppListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppListTableViewController.h; path = "AppList Tab/AppListTableViewController.h"; sourceTree = "<group>"; };
@@ -76,6 +87,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD0873F5165F39BA00EA46AD /* Clutch */ = {
+			isa = PBXGroup;
+			children = (
+				AD0873F7165F39CE00EA46AD /* AppList.h */,
+				AD0873FA165F3A0000EA46AD /* ClutchConfiguration.h */,
+				AD0873FB165F3A0000EA46AD /* ClutchConfiguration.m */,
+				AD0873F8165F39CE00EA46AD /* AppList.m */,
+			);
+			name = Clutch;
+			sourceTree = "<group>";
+		};
 		E9410B95165F0EE700CBDF31 = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +128,7 @@
 		E9410BAA165F0EE700CBDF31 /* Iljimae */ = {
 			isa = PBXGroup;
 			children = (
+				AD0873F5165F39BA00EA46AD /* Clutch */,
 				E9410BF7165F180900CBDF31 /* External Stuff */,
 				E9410BB3165F0EE800CBDF31 /* AppDelegate.h */,
 				E9410BB4165F0EE800CBDF31 /* AppDelegate.m */,
@@ -145,6 +168,9 @@
 				E91ED00F165F2C8A002AB7B4 /* AppListTableViewController.h */,
 				E91ED010165F2C8A002AB7B4 /* AppListTableViewController.m */,
 				E91ED00E165F2C8A002AB7B4 /* AppListTableViewController_iPhone.xib */,
+				AD0873FD165F3AF200EA46AD /* AppListTableCell.xib */,
+				AD0873FF165F3B1D00EA46AD /* AppListTableCell.h */,
+				AD087400165F3B1D00EA46AD /* AppListTableCell.m */,
 				E91ED00D165F2C8A002AB7B4 /* AppListTableViewController_iPad.xib */,
 				E91ED013165F2C8A002AB7B4 /* LoginViewController.h */,
 				E91ED014165F2C8A002AB7B4 /* LoginViewController.m */,
@@ -254,6 +280,7 @@
 				E91ED02C165F2CC5002AB7B4 /* Default-568h@2x.png in Resources */,
 				E91ED02D165F2CC5002AB7B4 /* Default.png in Resources */,
 				E91ED02E165F2CC5002AB7B4 /* Default@2x.png in Resources */,
+				AD0873FE165F3AF200EA46AD /* AppListTableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +297,9 @@
 				E91ED01A165F2C8A002AB7B4 /* LoginViewController.m in Sources */,
 				E91ED021165F2CA4002AB7B4 /* CrackTableViewController.m in Sources */,
 				E91ED028165F2CB7002AB7B4 /* SettingsTableViewController.m in Sources */,
+				AD0873F9165F39CE00EA46AD /* AppList.m in Sources */,
+				AD0873FC165F3A0000EA46AD /* ClutchConfiguration.m in Sources */,
+				AD087401165F3B1D00EA46AD /* AppListTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +375,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Iljimae/Iljimae-Prefix.pch";
 				INFOPLIST_FILE = "Iljimae/Iljimae-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -356,6 +387,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Iljimae/Iljimae-Prefix.pch";
 				INFOPLIST_FILE = "Iljimae/Iljimae-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
