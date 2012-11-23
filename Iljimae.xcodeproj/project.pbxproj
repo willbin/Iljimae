@@ -31,6 +31,8 @@
 		E9410BAF165F0EE800CBDF31 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9410BAD165F0EE800CBDF31 /* InfoPlist.strings */; };
 		E9410BB1165F0EE800CBDF31 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E9410BB0165F0EE800CBDF31 /* main.m */; };
 		E9410BB5165F0EE800CBDF31 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9410BB4165F0EE800CBDF31 /* AppDelegate.m */; };
+		E9B87EC71660068C004208C6 /* UITableViewCellAppList_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9B87EC41660068C004208C6 /* UITableViewCellAppList_iPad.xib */; };
+		E9B87EC81660068C004208C6 /* UITableViewCellAppList.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B87EC61660068C004208C6 /* UITableViewCellAppList.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +71,9 @@
 		E9410BB2165F0EE800CBDF31 /* Iljimae-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Iljimae-Prefix.pch"; sourceTree = "<group>"; };
 		E9410BB3165F0EE800CBDF31 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E9410BB4165F0EE800CBDF31 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E9B87EC41660068C004208C6 /* UITableViewCellAppList_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UITableViewCellAppList_iPad.xib; path = "AppList Tab/UITableViewCellAppList_iPad.xib"; sourceTree = "<group>"; };
+		E9B87EC51660068C004208C6 /* UITableViewCellAppList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UITableViewCellAppList.h; path = "AppList Tab/UITableViewCellAppList.h"; sourceTree = "<group>"; };
+		E9B87EC61660068C004208C6 /* UITableViewCellAppList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UITableViewCellAppList.m; path = "AppList Tab/UITableViewCellAppList.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +178,9 @@
 				E91ED014165F2C8A002AB7B4 /* LoginViewController.m */,
 				E91ED012165F2C8A002AB7B4 /* LoginViewController_iPhone.xib */,
 				E91ED011165F2C8A002AB7B4 /* LoginViewController_iPad.xib */,
+				E9B87EC51660068C004208C6 /* UITableViewCellAppList.h */,
+				E9B87EC61660068C004208C6 /* UITableViewCellAppList.m */,
+				E9B87EC41660068C004208C6 /* UITableViewCellAppList_iPad.xib */,
 			);
 			name = "AppList Tab";
 			sourceTree = "<group>";
@@ -278,6 +286,7 @@
 				E91ED02C165F2CC5002AB7B4 /* Default-568h@2x.png in Resources */,
 				E91ED02D165F2CC5002AB7B4 /* Default.png in Resources */,
 				E91ED02E165F2CC5002AB7B4 /* Default@2x.png in Resources */,
+				E9B87EC71660068C004208C6 /* UITableViewCellAppList_iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +322,7 @@
 				AD0873F9165F39CE00EA46AD /* AppList.m in Sources */,
 				AD0873FC165F3A0000EA46AD /* ClutchConfiguration.m in Sources */,
 				E9234CB5165FF75700AD9535 /* Application.m in Sources */,
+				E9B87EC81660068C004208C6 /* UITableViewCellAppList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
