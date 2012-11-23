@@ -7,8 +7,12 @@
 //
 
 #import "AppListTableViewController.h"
+
 #import "AppList.h"
-#import "AppListTableCell.h"
+
+#import "Application.h"
+
+#import "UITableViewCellAppList.h"
 
 @implementation AppListTableViewController
 @synthesize appList;
@@ -24,16 +28,7 @@
  
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-#warning this is screwed up, please fix it 
-    UINavigationBar* bar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 44.0f)];
-    UILabel* title = [[UILabel alloc] initWithFrame:CGRectMake(80, 2, 220, 25)];
-    title.font = [UIFont fontWithName:@"Arial-BoldMT" size:18];
-    title.adjustsFontSizeToFitWidth = YES;
-    title.text = @"Apps";
-    title.backgroundColor = [UIColor clearColor];
-    [bar addSubview:title];
-
-    [self.tableView addSubview:bar];     
+     
 }
 
 - (void)viewDidLoad
@@ -73,17 +68,20 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    AppListTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AppListTableCell"];
+    UITableViewCellAppList *cell = [tableView dequeueReusableCellWithIdentifier:@"AppListTableCell"];
     if (cell == nil) {
-        cell = [[AppListTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AppListTableCell"];
+        cell = [[UITableViewCellAppList alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AppListTableCell"];
     }
-    NSDictionary* dict = [self.appList objectAtIndex:[indexPath row]];
-    cell.appName.text = [dict objectForKey:@"ApplicationDisplayName"];
-    cell.appVersion.text = [dict objectForKey:@"ApplicationVersion"];
-    [cell.appImage setImage:[UIImage imageNamed:[dict objectForKey:@"ApplicationIcon"]]];
-    NSLog(@"[SWAG1223 %@", cell.appName.text);  
     
-    // Configure the cell...
+    //Configure cell to your liking, note the Application class
+    
+    NSDictionary *dict = [self.appList objectAtIndex:indexPath.row];
+    
+    Application *app = [[Application alloc] initWithName:[dict objectForKey:@"ApplicationDisplayName"] version:[dict objectForKey:@"ApplicationVersion"] iconPath:[dict objectForKey:@"ApplicationIcon"]];
+    
+    cell.textLabel.text = [app name];
+    cell.version = [app version];
+    cell.imageView.image = [UIImage imageWithContentsOfFile:[app iconPath]];
     
     return cell;
 }
@@ -138,6 +136,11 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 65;
 }
 
 @end

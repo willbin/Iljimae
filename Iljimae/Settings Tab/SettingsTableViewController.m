@@ -19,6 +19,7 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        style = UITableViewStyleGrouped;
     }
     return self;
 }

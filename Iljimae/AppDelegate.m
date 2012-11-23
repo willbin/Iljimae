@@ -22,27 +22,36 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     UITableViewController *appListTVC, *crackTVC, *settingsTVC;
+    UINavigationController *appListNC, *crackNC, *settingsNC;
+    
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         appListTVC = [[AppListTableViewController alloc] initWithNibName:@"AppListTableViewController_iPhone" bundle:nil];
         appListTVC.title = @"Apps";
+        appListNC = [[UINavigationController alloc] initWithRootViewController:appListTVC];
         
         crackTVC = [[CrackTableViewController alloc] initWithNibName:@"CrackTableViewController_iPhone" bundle:nil];
         crackTVC.title = @"Crack";
+        crackNC = [[UINavigationController alloc] initWithRootViewController:crackTVC];
         
         settingsTVC = [[SettingsTableViewController alloc] initWithNibName:@"SettingsTableViewController_iPhone" bundle:nil];
         settingsTVC.title = @"Settings";
+        settingsNC = [[UINavigationController alloc] initWithRootViewController:settingsTVC];
+
     } else {
         appListTVC = [[AppListTableViewController alloc] initWithNibName:@"AppListTableViewController_iPad" bundle:nil];
         appListTVC.title = @"Applications";
+        appListNC = [[UINavigationController alloc] initWithRootViewController:appListTVC];
         
         crackTVC = [[CrackTableViewController alloc] initWithNibName:@"CrackTableViewController_iPad" bundle:nil];
         crackTVC.title = @"Crack";
+        crackNC = [[UINavigationController alloc] initWithRootViewController:crackTVC];
         
         settingsTVC = [[SettingsTableViewController alloc] initWithNibName:@"SettingsTableViewController_iPad" bundle:nil];
         settingsTVC.title = @"Settings";
+        settingsNC = [[UINavigationController alloc] initWithRootViewController:settingsTVC];
     }
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:appListTVC, crackTVC, settingsTVC, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:appListNC, crackNC, settingsNC, nil];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
