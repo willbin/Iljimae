@@ -3,6 +3,7 @@
 int overdrive_enabled = 0;
 
 NSString * crack_application(NSString *application_basedir, NSString *basename) {
+    
     VERBOSE("Creating working directory...");
 	NSString *workingDir = [NSString stringWithFormat:@"%@%@/", @"/tmp/clutch_", genRandStringLength(8)];
 	if (![[NSFileManager defaultManager] createDirectoryAtPath:[workingDir stringByAppendingFormat:@"Payload/%@", basename] withIntermediateDirectories:YES attributes:[NSDictionary
@@ -12,194 +13,196 @@ NSString * crack_application(NSString *application_basedir, NSString *basename) 
 		printf("error: Could not create working directory\n");
 		return nil;
 	}
-	
-    VERBOSE("Performing initial analysis...");
-	struct stat statbuf_info;
-	stat([[application_basedir stringByAppendingString:@"Info.plist"] UTF8String], &statbuf_info);
-	time_t ist_atime = statbuf_info.st_atime;
-	time_t ist_mtime = statbuf_info.st_mtime;
-	struct utimbuf oldtimes_info;
-	oldtimes_info.actime = ist_atime;
-	oldtimes_info.modtime = ist_mtime;
-	
-	NSMutableDictionary *infoplist = [NSMutableDictionary dictionaryWithContentsOfFile:[application_basedir stringByAppendingString:@"Info.plist"]];
-	if (infoplist == nil) {
-		printf("error: Could not open Info.plist\n");
-		goto fatalc;
-	}
-	
-	if ([(NSString *)[ClutchConfiguration getValue:@"CheckMinOS"] isEqualToString:@"YES"]) {
-		NSString *MinOS;
-		if (nil != (MinOS = [infoplist objectForKey:@"MinimumOSVersion"])) {
-			if (strncmp([MinOS UTF8String], "2", 1) == 0) {
-				printf("notice: added SignerIdentity field (MinOS 2.X)\n");
-				[infoplist setObject:@"Apple iPhone OS Application Signing" forKey:@"SignerIdentity"];
-				[infoplist writeToFile:[application_basedir stringByAppendingString:@"Info.plist"] atomically:NO];
-			}
-		}
-	}
-	
-	utime([[application_basedir stringByAppendingString:@"Info.plist"] UTF8String], &oldtimes_info);
-	
-	NSString *binary_name = [infoplist objectForKey:@"CFBundleExecutable"];
-	
-	NSString *fbinary_path = init_crack_binary(application_basedir, basename, workingDir, infoplist);
-	if (fbinary_path == nil) {
-		printf("error: Could not crack binary\n");
-		goto fatalc;
-	}
-	
-	NSMutableDictionary *metadataPlist = [NSMutableDictionary dictionaryWithContentsOfFile:[application_basedir stringByAppendingString:@"/../iTunesMetadata.plist"]];
-	
-	[[NSFileManager defaultManager] copyItemAtPath:[application_basedir stringByAppendingString:@"/../iTunesArtwork"] toPath:[workingDir stringByAppendingString:@"iTunesArtwork"] error:NULL];
-    
-	if (![[ClutchConfiguration getValue:@"RemoveMetadata"] isEqualToString:@"YES"]) {
-        VERBOSE("Censoring iTunesMetadata.plist...");
-		struct stat statbuf_metadata;
-		stat([[application_basedir stringByAppendingString:@"/../iTunesMetadata.plist"] UTF8String], &statbuf_metadata);
-		time_t mst_atime = statbuf_metadata.st_atime;
-		time_t mst_mtime = statbuf_metadata.st_mtime;
-		struct utimbuf oldtimes_metadata;
-		oldtimes_metadata.actime = mst_atime;
-		oldtimes_metadata.modtime = mst_mtime;
-		
-        NSString *fake_email;
-        NSDate *fake_purchase_date = [NSDate dateWithTimeIntervalSince1970:1251313938];
+	{
+        VERBOSE("Performing initial analysis...");
+        struct stat statbuf_info;
+        stat([[application_basedir stringByAppendingString:@"Info.plist"] UTF8String], &statbuf_info);
+        time_t ist_atime = statbuf_info.st_atime;
+        time_t ist_mtime = statbuf_info.st_mtime;
+        struct utimbuf oldtimes_info;
+        oldtimes_info.actime = ist_atime;
+        oldtimes_info.modtime = ist_mtime;
         
-        if (nil == (fake_email = [ClutchConfiguration getValue:@"MetadataEmail"])) {
-            fake_email = @"steve@rim.jobs";
+        NSMutableDictionary *infoplist = [NSMutableDictionary dictionaryWithContentsOfFile:[application_basedir stringByAppendingString:@"Info.plist"]];
+        if (infoplist == nil) {
+            printf("error: Could not open Info.plist\n");
+            goto fatalc;
         }
         
-        if (nil == (fake_purchase_date = [ClutchConfiguration getValue:@"MetadataPurchaseDate"])) {
-            fake_purchase_date = [NSDate dateWithTimeIntervalSince1970:1251313938];
+        if ([(NSString *)[ClutchConfiguration getValue:@"CheckMinOS"] isEqualToString:@"YES"]) {
+            NSString *MinOS;
+            if (nil != (MinOS = [infoplist objectForKey:@"MinimumOSVersion"])) {
+                if (strncmp([MinOS UTF8String], "2", 1) == 0) {
+                    printf("notice: added SignerIdentity field (MinOS 2.X)\n");
+                    [infoplist setObject:@"Apple iPhone OS Application Signing" forKey:@"SignerIdentity"];
+                    [infoplist writeToFile:[application_basedir stringByAppendingString:@"Info.plist"] atomically:NO];
+                }
+            }
         }
         
-		NSDictionary *censorList = [NSDictionary dictionaryWithObjectsAndKeys:fake_email, @"appleId", fake_purchase_date, @"purchaseDate", nil];
-		if ([[ClutchConfiguration getValue:@"CheckMetadata"] isEqualToString:@"YES"]) {
-			NSDictionary *noCensorList = [NSDictionary dictionaryWithObjectsAndKeys:
-										  @"", @"artistId",
-										  @"", @"artistName",
-										  @"", @"buy-only",
-										  @"", @"buyParams",
-										  @"", @"copyright",
-										  @"", @"drmVersionNumber",
-										  @"", @"fileExtension",
-										  @"", @"genre",
-										  @"", @"genreId",
-										  @"", @"itemId",
-										  @"", @"itemName",
-										  @"", @"gameCenterEnabled",
-										  @"", @"gameCenterEverEnabled",
-										  @"", @"kind",
-										  @"", @"playlistArtistName",
-										  @"", @"playlistName",
-										  @"", @"price",
-										  @"", @"priceDisplay",
-										  @"", @"rating",
-										  @"", @"releaseDate",
-										  @"", @"s",
-										  @"", @"softwareIcon57x57URL",
-										  @"", @"softwareIconNeedsShine",
-										  @"", @"softwareSupportedDeviceIds",
-										  @"", @"softwareVersionBundleId",
-										  @"", @"softwareVersionExternalIdentifier",
-                                          @"", @"UIRequiredDeviceCapabilities",
-										  @"", @"softwareVersionExternalIdentifiers",
-										  @"", @"subgenres",
-										  @"", @"vendorId",
-										  @"", @"versionRestrictions",
-										  @"", @"com.apple.iTunesStore.downloadInfo",
-										  @"", @"bundleVersion",
-										  @"", @"bundleShortVersionString", nil];
-			for (id plistItem in metadataPlist) {
-				if (([noCensorList objectForKey:plistItem] == nil) && ([censorList objectForKey:plistItem] == nil)) {
-					printf("\033[0;37;41mwarning: iTunesMetadata.plist item named '\033[1;37;41m%s\033[0;37;41m' is unrecognized\033[0m\n", [plistItem UTF8String]);
-				}
-			}
-		}
-		
-		for (id censorItem in censorList) {
-			[metadataPlist setObject:[censorList objectForKey:censorItem] forKey:censorItem];
-		}
-		[metadataPlist removeObjectForKey:@"com.apple.iTunesStore.downloadInfo"];
-		[metadataPlist writeToFile:[workingDir stringByAppendingString:@"iTunesMetadata.plist"] atomically:NO];
-		utime([[workingDir stringByAppendingString:@"iTunesMetadata.plist"] UTF8String], &oldtimes_metadata);
-		utime([[application_basedir stringByAppendingString:@"/../iTunesMetadata.plist"] UTF8String], &oldtimes_metadata);
-	}
-	
-	NSString *crackerName = [ClutchConfiguration getValue:@"CrackerName"];
-	if ([[ClutchConfiguration getValue:@"CreditFile"] isEqualToString:@"YES"]) {
-        VERBOSE("Creating credit file...");
-		FILE *fh = fopen([[workingDir stringByAppendingFormat:@"_%@", crackerName] UTF8String], "w");
-		NSString *creditFileData = [NSString stringWithFormat:@"%@ (%@) Cracked by %@ using %s.", [infoplist objectForKey:@"CFBundleDisplayName"], [infoplist objectForKey:@"CFBundleVersion"], crackerName, CLUTCH_VERSION];
-		fwrite([creditFileData UTF8String], [creditFileData lengthOfBytesUsingEncoding:NSUTF8StringEncoding], 1, fh);
-		fclose(fh);
-	}
-    
-    if (overdrive_enabled) {
-        VERBOSE("Including overdrive dylib...");
-        [[NSFileManager defaultManager] copyItemAtPath:@"/var/lib/clutch/overdrive.dylib" toPath:[workingDir stringByAppendingFormat:@"Payload/%@/overdrive.dylib", basename] error:NULL];
+        utime([[application_basedir stringByAppendingString:@"Info.plist"] UTF8String], &oldtimes_info);
         
-        VERBOSE("Creating fake SC_Info data...");
-        // create fake SC_Info directory
-        [[NSFileManager defaultManager] createDirectoryAtPath:[workingDir stringByAppendingFormat:@"Payload/%@/SF_Info/", basename] withIntermediateDirectories:YES attributes:nil error:NULL];
+        NSString *binary_name = [infoplist objectForKey:@"CFBundleExecutable"];
         
-        // create fake SC_Info SINF file
-        FILE *sinfh = fopen([[workingDir stringByAppendingFormat:@"Payload/%@/SF_Info/%@.sinf", basename, binary_name] UTF8String], "w");
-        void *sinf = generate_sinf([[metadataPlist objectForKey:@"itemId"] intValue], (char *)[crackerName UTF8String], [[metadataPlist objectForKey:@"vendorId"] intValue]);
-        fwrite(sinf, CFSwapInt32(*(uint32_t *)sinf), 1, sinfh);
-        fclose(sinfh);
-        free(sinf);
+        NSString *fbinary_path = init_crack_binary(application_basedir, basename, workingDir, infoplist);
+        if (fbinary_path == nil) {
+            printf("error: Could not crack binary\n");
+            goto fatalc;
+        }
         
-        // create fake SC_Info SUPP file
-        FILE *supph = fopen([[workingDir stringByAppendingFormat:@"Payload/%@/SF_Info/%@.supp", basename, binary_name] UTF8String], "w");
-        uint32_t suppsize;
-        void *supp = generate_supp(&suppsize);
-        fwrite(supp, suppsize, 1, supph);
-        fclose(supph);
-        free(supp);
+        NSMutableDictionary *metadataPlist = [NSMutableDictionary dictionaryWithContentsOfFile:[application_basedir stringByAppendingString:@"/../iTunesMetadata.plist"]];
+        
+        [[NSFileManager defaultManager] copyItemAtPath:[application_basedir stringByAppendingString:@"/../iTunesArtwork"] toPath:[workingDir stringByAppendingString:@"iTunesArtwork"] error:NULL];
+        
+        if (![[ClutchConfiguration getValue:@"RemoveMetadata"] isEqualToString:@"YES"]) {
+            VERBOSE("Censoring iTunesMetadata.plist...");
+            struct stat statbuf_metadata;
+            stat([[application_basedir stringByAppendingString:@"/../iTunesMetadata.plist"] UTF8String], &statbuf_metadata);
+            time_t mst_atime = statbuf_metadata.st_atime;
+            time_t mst_mtime = statbuf_metadata.st_mtime;
+            struct utimbuf oldtimes_metadata;
+            oldtimes_metadata.actime = mst_atime;
+            oldtimes_metadata.modtime = mst_mtime;
+            
+            NSString *fake_email;
+            NSDate *fake_purchase_date = [NSDate dateWithTimeIntervalSince1970:1251313938];
+            
+            if (nil == (fake_email = [ClutchConfiguration getValue:@"MetadataEmail"])) {
+                fake_email = @"steve@rim.jobs";
+            }
+            
+            if (nil == (fake_purchase_date = [ClutchConfiguration getValue:@"MetadataPurchaseDate"])) {
+                fake_purchase_date = [NSDate dateWithTimeIntervalSince1970:1251313938];
+            }
+            
+            NSDictionary *censorList = [NSDictionary dictionaryWithObjectsAndKeys:fake_email, @"appleId", fake_purchase_date, @"purchaseDate", nil];
+            if ([[ClutchConfiguration getValue:@"CheckMetadata"] isEqualToString:@"YES"]) {
+                NSDictionary *noCensorList = [NSDictionary dictionaryWithObjectsAndKeys:
+                                              @"", @"artistId",
+                                              @"", @"artistName",
+                                              @"", @"buy-only",
+                                              @"", @"buyParams",
+                                              @"", @"copyright",
+                                              @"", @"drmVersionNumber",
+                                              @"", @"fileExtension",
+                                              @"", @"genre",
+                                              @"", @"genreId",
+                                              @"", @"itemId",
+                                              @"", @"itemName",
+                                              @"", @"gameCenterEnabled",
+                                              @"", @"gameCenterEverEnabled",
+                                              @"", @"kind",
+                                              @"", @"playlistArtistName",
+                                              @"", @"playlistName",
+                                              @"", @"price",
+                                              @"", @"priceDisplay",
+                                              @"", @"rating",
+                                              @"", @"releaseDate",
+                                              @"", @"s",
+                                              @"", @"softwareIcon57x57URL",
+                                              @"", @"softwareIconNeedsShine",
+                                              @"", @"softwareSupportedDeviceIds",
+                                              @"", @"softwareVersionBundleId",
+                                              @"", @"softwareVersionExternalIdentifier",
+                                              @"", @"UIRequiredDeviceCapabilities",
+                                              @"", @"softwareVersionExternalIdentifiers",
+                                              @"", @"subgenres",
+                                              @"", @"vendorId",
+                                              @"", @"versionRestrictions",
+                                              @"", @"com.apple.iTunesStore.downloadInfo",
+                                              @"", @"bundleVersion",
+                                              @"", @"bundleShortVersionString", nil];
+                for (id plistItem in metadataPlist) {
+                    if (([noCensorList objectForKey:plistItem] == nil) && ([censorList objectForKey:plistItem] == nil)) {
+                        printf("\033[0;37;41mwarning: iTunesMetadata.plist item named '\033[1;37;41m%s\033[0;37;41m' is unrecognized\033[0m\n", [plistItem UTF8String]);
+                    }
+                }
+            }
+            
+            for (id censorItem in censorList) {
+                [metadataPlist setObject:[censorList objectForKey:censorItem] forKey:censorItem];
+            }
+            [metadataPlist removeObjectForKey:@"com.apple.iTunesStore.downloadInfo"];
+            [metadataPlist writeToFile:[workingDir stringByAppendingString:@"iTunesMetadata.plist"] atomically:NO];
+            utime([[workingDir stringByAppendingString:@"iTunesMetadata.plist"] UTF8String], &oldtimes_metadata);
+            utime([[application_basedir stringByAppendingString:@"/../iTunesMetadata.plist"] UTF8String], &oldtimes_metadata);
+        }
+        
+        NSString *crackerName = [ClutchConfiguration getValue:@"CrackerName"];
+        if ([[ClutchConfiguration getValue:@"CreditFile"] isEqualToString:@"YES"]) {
+            VERBOSE("Creating credit file...");
+            FILE *fh = fopen([[workingDir stringByAppendingFormat:@"_%@", crackerName] UTF8String], "w");
+            NSString *creditFileData = [NSString stringWithFormat:@"%@ (%@) Cracked by %@ using %s.", [infoplist objectForKey:@"CFBundleDisplayName"], [infoplist objectForKey:@"CFBundleVersion"], crackerName, CLUTCH_VERSION];
+            fwrite([creditFileData UTF8String], [creditFileData lengthOfBytesUsingEncoding:NSUTF8StringEncoding], 1, fh);
+            fclose(fh);
+        }
+        
+        if (overdrive_enabled) {
+            VERBOSE("Including overdrive dylib...");
+            [[NSFileManager defaultManager] copyItemAtPath:@"/var/lib/clutch/overdrive.dylib" toPath:[workingDir stringByAppendingFormat:@"Payload/%@/overdrive.dylib", basename] error:NULL];
+            
+            VERBOSE("Creating fake SC_Info data...");
+            // create fake SC_Info directory
+            [[NSFileManager defaultManager] createDirectoryAtPath:[workingDir stringByAppendingFormat:@"Payload/%@/SF_Info/", basename] withIntermediateDirectories:YES attributes:nil error:NULL];
+            
+            // create fake SC_Info SINF file
+            FILE *sinfh = fopen([[workingDir stringByAppendingFormat:@"Payload/%@/SF_Info/%@.sinf", basename, binary_name] UTF8String], "w");
+            void *sinf = generate_sinf([[metadataPlist objectForKey:@"itemId"] intValue], (char *)[crackerName UTF8String], [[metadataPlist objectForKey:@"vendorId"] intValue]);
+            fwrite(sinf, CFSwapInt32(*(uint32_t *)sinf), 1, sinfh);
+            fclose(sinfh);
+            free(sinf);
+            
+            // create fake SC_Info SUPP file
+            FILE *supph = fopen([[workingDir stringByAppendingFormat:@"Payload/%@/SF_Info/%@.supp", basename, binary_name] UTF8String], "w");
+            uint32_t suppsize;
+            void *supp = generate_supp(&suppsize);
+            fwrite(supp, suppsize, 1, supph);
+            fclose(supph);
+            free(supp);
+        }
+        
+        VERBOSE("Packaging IPA file...");
+        
+        // filename addendum
+        NSString *addendum = @"";
+        
+        if (overdrive_enabled)
+            addendum = @"-OD";
+        
+        NSString *ipapath;
+        if ([[ClutchConfiguration getValue:@"FilenameCredit"] isEqualToString:@"YES"]) {
+            ipapath = [NSString stringWithFormat:@"/var/root/Documents/Cracked/%@-v%@-%@%@.ipa", [[infoplist objectForKey:@"CFBundleDisplayName"] stringByReplacingOccurrencesOfString:@"/" withString:@"_"], [infoplist objectForKey:@"CFBundleVersion"], crackerName, addendum];
+        } else {
+            ipapath = [NSString stringWithFormat:@"/var/root/Documents/Cracked/%@-v%@%@.ipa", [[infoplist objectForKey:@"CFBundleDisplayName"] stringByReplacingOccurrencesOfString:@"/" withString:@"_"], [infoplist objectForKey:@"CFBundleVersion"], addendum];
+        }
+        [[NSFileManager defaultManager] createDirectoryAtPath:@"/var/root/Documents/Cracked/" withIntermediateDirectories:TRUE attributes:nil error:NULL];
+        [[NSFileManager defaultManager] removeItemAtPath:ipapath error:NULL];
+        
+        NSString *compressionArguments = [[ClutchConfiguration getValue:@"CompressionArguments"] stringByAppendingString:@" "];
+        if (compressionArguments == nil)
+            compressionArguments = @"";
+        
+        NOTIFY("Compressing first stage resources (1/2)...");
+        
+        system([[NSString stringWithFormat:@"cd %@; zip %@-m -r \"%@\" * 2>&1> /dev/null", workingDir, compressionArguments, ipapath] UTF8String]);
+        [[NSFileManager defaultManager] moveItemAtPath:[workingDir stringByAppendingString:@"Payload"] toPath:[workingDir stringByAppendingString:@"Payload_1"] error:NULL];
+        
+        NOTIFY("Compressing second stage payload (2/2)...");
+        
+        [[NSFileManager defaultManager] createSymbolicLinkAtPath:[workingDir stringByAppendingString:@"Payload"] withDestinationPath:[application_basedir stringByAppendingString:@"/../"] error:NULL];
+        
+        system([[NSString stringWithFormat:@"cd %@; zip %@-u -y -r -n .jpg:.JPG:.jpeg:.png:.PNG:.gif:.GIF:.Z:.gz:.zip:.zoo:.arc:.lzh:.rar:.arj:.mp3:.mp4:.m4a:.m4v:.ogg:.ogv:.avi:.flac:.aac \"%@\" Payload/* -x Payload/iTunesArtwork Payload/iTunesMetadata.plist \"Payload/Documents/*\" \"Payload/Library/*\" \"Payload/tmp/*\" \"Payload/*/%@\" \"Payload/*/SC_Info/*\" 2>&1> /dev/null", workingDir, compressionArguments, ipapath, binary_name] UTF8String]);
+        
+        stop_bar();
+        
+        [[NSFileManager defaultManager] removeItemAtPath:workingDir error:NULL];
+        return ipapath;
     }
-    
-    VERBOSE("Packaging IPA file...");
-    
-    // filename addendum
-    NSString *addendum = @"";
-    
-    if (overdrive_enabled)
-        addendum = @"-OD";
-    
-	NSString *ipapath;
-	if ([[ClutchConfiguration getValue:@"FilenameCredit"] isEqualToString:@"YES"]) {
-		ipapath = [NSString stringWithFormat:@"/var/root/Documents/Cracked/%@-v%@-%@%@.ipa", [[infoplist objectForKey:@"CFBundleDisplayName"] stringByReplacingOccurrencesOfString:@"/" withString:@"_"], [infoplist objectForKey:@"CFBundleVersion"], crackerName, addendum];
-	} else {
-		ipapath = [NSString stringWithFormat:@"/var/root/Documents/Cracked/%@-v%@%@.ipa", [[infoplist objectForKey:@"CFBundleDisplayName"] stringByReplacingOccurrencesOfString:@"/" withString:@"_"], [infoplist objectForKey:@"CFBundleVersion"], addendum];
-	}
-	[[NSFileManager defaultManager] createDirectoryAtPath:@"/var/root/Documents/Cracked/" withIntermediateDirectories:TRUE attributes:nil error:NULL];
-	[[NSFileManager defaultManager] removeItemAtPath:ipapath error:NULL];
-    
-	NSString *compressionArguments = [[ClutchConfiguration getValue:@"CompressionArguments"] stringByAppendingString:@" "];
-	if (compressionArguments == nil)
-		compressionArguments = @"";
-    
-    NOTIFY("Compressing first stage resources (1/2)...");
-    
-	system([[NSString stringWithFormat:@"cd %@; zip %@-m -r \"%@\" * 2>&1> /dev/null", workingDir, compressionArguments, ipapath] UTF8String]);
-	[[NSFileManager defaultManager] moveItemAtPath:[workingDir stringByAppendingString:@"Payload"] toPath:[workingDir stringByAppendingString:@"Payload_1"] error:NULL];
-    
-    NOTIFY("Compressing second stage payload (2/2)...");
-    
-	[[NSFileManager defaultManager] createSymbolicLinkAtPath:[workingDir stringByAppendingString:@"Payload"] withDestinationPath:[application_basedir stringByAppendingString:@"/../"] error:NULL];
-    
-	system([[NSString stringWithFormat:@"cd %@; zip %@-u -y -r -n .jpg:.JPG:.jpeg:.png:.PNG:.gif:.GIF:.Z:.gz:.zip:.zoo:.arc:.lzh:.rar:.arj:.mp3:.mp4:.m4a:.m4v:.ogg:.ogv:.avi:.flac:.aac \"%@\" Payload/* -x Payload/iTunesArtwork Payload/iTunesMetadata.plist \"Payload/Documents/*\" \"Payload/Library/*\" \"Payload/tmp/*\" \"Payload/*/%@\" \"Payload/*/SC_Info/*\" 2>&1> /dev/null", workingDir, compressionArguments, ipapath, binary_name] UTF8String]);
 	
-    stop_bar();
-    
-	[[NSFileManager defaultManager] removeItemAtPath:workingDir error:NULL];
-	return ipapath;
-	
-fatalc:
+fatalc: {
 	[[NSFileManager defaultManager] removeItemAtPath:workingDir error:NULL];
 	return nil;
+}
 }
 
 NSString * init_crack_binary(NSString *application_basedir, NSString *bdir, NSString *workingDir, NSDictionary *infoplist) {
