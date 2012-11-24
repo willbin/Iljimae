@@ -14,7 +14,10 @@
 
 #import "UITableViewCellAppList.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @implementation AppListTableViewController
+
 @synthesize appList;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -53,14 +56,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return [self.appList count];
 }
@@ -76,12 +77,23 @@
     //Configure cell to your liking, note the Application class
     
     NSDictionary *dict = [self.appList objectAtIndex:indexPath.row];
-    
-    Application *app = [[Application alloc] initWithName:[dict objectForKey:@"ApplicationDisplayName"] version:[dict objectForKey:@"ApplicationVersion"] iconPath:[dict objectForKey:@"ApplicationIcon"]];
-    
-    cell.imageView.image = [app icon];
+
+    Application *app = [[Application alloc] initWithapplicationDirectory:[dict objectForKey:@"ApplicationDirectory"] name:[dict objectForKey:@"ApplicationDisplayName"] version:[dict objectForKey:@"ApplicationVersion"] iconPath:[dict objectForKey:@"ApplicationIcon"]];
+
+    if([app icon] == nil){
+        cell.imageView.image = [UIImage imageNamed:@"AppPlaceholder.png"];
+    } else {
+        //[cell.imageView.layer setCornerRadius:10.0/57.0*[app icon].size.width];
+        [cell.imageView.layer setCornerRadius:5.0];
+        [cell.imageView.layer setMasksToBounds:YES];
+        [cell setNeedsLayout];
+        cell.imageView.image = [app icon];
+    }
     cell.textLabel.text = [app name];
     cell.version = [app version];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.selectionStyle = UITableViewCellSelectionStyleGray;
+    
     
     return cell;
 }

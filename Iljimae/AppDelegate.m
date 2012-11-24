@@ -28,27 +28,33 @@
         appListTVC = [[AppListTableViewController alloc] initWithNibName:@"AppListTableViewController_iPhone" bundle:nil];
         appListTVC.title = @"Apps";
         appListNC = [[UINavigationController alloc] initWithRootViewController:appListTVC];
+        appListNC.tabBarItem.image = [UIImage imageNamed:@"Applications.png"];
         
         crackTVC = [[CrackTableViewController alloc] initWithNibName:@"CrackTableViewController_iPhone" bundle:nil];
         crackTVC.title = @"Crack";
         crackNC = [[UINavigationController alloc] initWithRootViewController:crackTVC];
+        crackNC.tabBarItem.image = [UIImage imageNamed:@"Crack.png"];
         
         settingsTVC = [[SettingsTableViewController alloc] initWithNibName:@"SettingsTableViewController_iPhone" bundle:nil];
         settingsTVC.title = @"Settings";
         settingsNC = [[UINavigationController alloc] initWithRootViewController:settingsTVC];
+        settingsNC.tabBarItem.image = [UIImage imageNamed:@"Settings.png"];
 
     } else {
         appListTVC = [[AppListTableViewController alloc] initWithNibName:@"AppListTableViewController_iPad" bundle:nil];
         appListTVC.title = @"Applications";
         appListNC = [[UINavigationController alloc] initWithRootViewController:appListTVC];
+        appListNC.tabBarItem.image = [UIImage imageNamed:@"Applications.png"];
         
         crackTVC = [[CrackTableViewController alloc] initWithNibName:@"CrackTableViewController_iPad" bundle:nil];
         crackTVC.title = @"Crack";
         crackNC = [[UINavigationController alloc] initWithRootViewController:crackTVC];
+        crackNC.tabBarItem.image = [UIImage imageNamed:@"Crack.png"];
         
         settingsTVC = [[SettingsTableViewController alloc] initWithNibName:@"SettingsTableViewController_iPad" bundle:nil];
         settingsTVC.title = @"Settings";
         settingsNC = [[UINavigationController alloc] initWithRootViewController:settingsTVC];
+        settingsNC.tabBarItem.image = [UIImage imageNamed:@"Settings.png"];
     }
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:appListNC, crackNC, settingsNC, nil];

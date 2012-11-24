@@ -38,6 +38,7 @@
     [versionLabel setBackgroundColor:[UIColor clearColor]];
     [versionLabel setFont:[UIFont fontWithName:@"Helvetica" size:14]];
     [versionLabel setFrame:CGRectIntegral(CGRectMake(78, 40, [version sizeWithFont:versionLabel.font].width, [version sizeWithFont:versionLabel.font].height))];
+    [versionLabel setHighlightedTextColor:[UIColor whiteColor]];
     
     [self.contentView addSubview:versionLabel];
 }
@@ -45,7 +46,6 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
 

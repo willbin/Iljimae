@@ -10,15 +10,16 @@
 
 @interface Application : NSObject
 {
-    NSString *name, *version, *iconPath;
+    NSString *name, *version, *iconPath, *applicationDirectory;
     UIImage *icon;
 }
 
+- (NSString *)applicationDirectory;
 - (NSString *)name;
 - (NSString *)version;
 - (UIImage *)icon;
 - (NSString *)iconPath;
 
-- (id)initWithName:(NSString *)_name version:(NSString *)_version iconPath:(NSString *)_iconPath;
+- (id)initWithapplicationDirectory:(NSString *)_applicationDirectory name:(NSString *)_name version:(NSString *)_version iconPath:(NSString *)_iconPath;
 
 @end

@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface AppListTableViewController : UITableViewController
+{
+    NSArray *appList;
+}
 
-@property NSArray* appList;
+@property (nonatomic, strong) NSArray *appList;
 
 @end

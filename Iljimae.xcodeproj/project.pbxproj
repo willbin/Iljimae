@@ -32,6 +32,17 @@
 		E9410BB1165F0EE800CBDF31 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E9410BB0165F0EE800CBDF31 /* main.m */; };
 		E9410BB5165F0EE800CBDF31 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9410BB4165F0EE800CBDF31 /* AppDelegate.m */; };
 		E9B87EC81660068C004208C6 /* UITableViewCellAppList.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B87EC61660068C004208C6 /* UITableViewCellAppList.m */; };
+		E9B87ED3166038F8004208C6 /* AppPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B87ECF166038F8004208C6 /* AppPlaceholder.png */; };
+		E9B87ED4166038F8004208C6 /* AppPlaceholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B87ED0166038F8004208C6 /* AppPlaceholder@2x.png */; };
+		E9B87ED5166038F8004208C6 /* AppPlaceholderLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B87ED1166038F8004208C6 /* AppPlaceholderLarge.png */; };
+		E9B87ED6166038F8004208C6 /* AppPlaceholderLarge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B87ED2166038F8004208C6 /* AppPlaceholderLarge@2x.png */; };
+		E9B87EDC16603B2F004208C6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B87EDB16603B2F004208C6 /* QuartzCore.framework */; };
+		E9B87EE616604E09004208C6 /* Applications.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B87EE016604E09004208C6 /* Applications.png */; };
+		E9B87EE716604E09004208C6 /* Applications@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B87EE116604E09004208C6 /* Applications@2x.png */; };
+		E9B87EE816604E09004208C6 /* Crack.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B87EE216604E09004208C6 /* Crack.png */; };
+		E9B87EE916604E09004208C6 /* Crack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B87EE316604E09004208C6 /* Crack@2x.png */; };
+		E9B87EEA16604E09004208C6 /* Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B87EE416604E09004208C6 /* Settings.png */; };
+		E9B87EEB16604E09004208C6 /* Settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B87EE516604E09004208C6 /* Settings@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +83,17 @@
 		E9410BB4165F0EE800CBDF31 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E9B87EC51660068C004208C6 /* UITableViewCellAppList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UITableViewCellAppList.h; path = "AppList Tab/UITableViewCellAppList.h"; sourceTree = "<group>"; };
 		E9B87EC61660068C004208C6 /* UITableViewCellAppList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UITableViewCellAppList.m; path = "AppList Tab/UITableViewCellAppList.m"; sourceTree = "<group>"; };
+		E9B87ECF166038F8004208C6 /* AppPlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppPlaceholder.png; path = Images/AppPlaceholder.png; sourceTree = "<group>"; };
+		E9B87ED0166038F8004208C6 /* AppPlaceholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppPlaceholder@2x.png"; path = "Images/AppPlaceholder@2x.png"; sourceTree = "<group>"; };
+		E9B87ED1166038F8004208C6 /* AppPlaceholderLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppPlaceholderLarge.png; path = Images/AppPlaceholderLarge.png; sourceTree = "<group>"; };
+		E9B87ED2166038F8004208C6 /* AppPlaceholderLarge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppPlaceholderLarge@2x.png"; path = "Images/AppPlaceholderLarge@2x.png"; sourceTree = "<group>"; };
+		E9B87EDB16603B2F004208C6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E9B87EE016604E09004208C6 /* Applications.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Applications.png; path = Images/Applications.png; sourceTree = "<group>"; };
+		E9B87EE116604E09004208C6 /* Applications@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Applications@2x.png"; path = "Images/Applications@2x.png"; sourceTree = "<group>"; };
+		E9B87EE216604E09004208C6 /* Crack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Crack.png; path = Images/Crack.png; sourceTree = "<group>"; };
+		E9B87EE316604E09004208C6 /* Crack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Crack@2x.png"; path = "Images/Crack@2x.png"; sourceTree = "<group>"; };
+		E9B87EE416604E09004208C6 /* Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Settings.png; path = Images/Settings.png; sourceTree = "<group>"; };
+		E9B87EE516604E09004208C6 /* Settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Settings@2x.png"; path = "Images/Settings@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9B87EDC16603B2F004208C6 /* QuartzCore.framework in Frameworks */,
 				E9410BA5165F0EE700CBDF31 /* UIKit.framework in Frameworks */,
 				E9410BA7165F0EE700CBDF31 /* Foundation.framework in Frameworks */,
 				E9410BA9165F0EE700CBDF31 /* CoreGraphics.framework in Frameworks */,
@@ -119,6 +142,7 @@
 		E9410BA3165F0EE700CBDF31 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E9B87EDB16603B2F004208C6 /* QuartzCore.framework */,
 				E9410BA4165F0EE700CBDF31 /* UIKit.framework */,
 				E9410BA6165F0EE700CBDF31 /* Foundation.framework */,
 				E9410BA8165F0EE700CBDF31 /* CoreGraphics.framework */,
@@ -156,9 +180,19 @@
 		E9410BE2165F0FBD00CBDF31 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E9B87ECF166038F8004208C6 /* AppPlaceholder.png */,
+				E9B87ED0166038F8004208C6 /* AppPlaceholder@2x.png */,
+				E9B87ED1166038F8004208C6 /* AppPlaceholderLarge.png */,
+				E9B87ED2166038F8004208C6 /* AppPlaceholderLarge@2x.png */,
 				E91ED029165F2CC5002AB7B4 /* Default-568h@2x.png */,
 				E91ED02A165F2CC5002AB7B4 /* Default.png */,
 				E91ED02B165F2CC5002AB7B4 /* Default@2x.png */,
+				E9B87EE016604E09004208C6 /* Applications.png */,
+				E9B87EE116604E09004208C6 /* Applications@2x.png */,
+				E9B87EE216604E09004208C6 /* Crack.png */,
+				E9B87EE316604E09004208C6 /* Crack@2x.png */,
+				E9B87EE416604E09004208C6 /* Settings.png */,
+				E9B87EE516604E09004208C6 /* Settings@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -168,6 +202,8 @@
 			children = (
 				E9234CB3165FF75700AD9535 /* Application.h */,
 				E9234CB4165FF75700AD9535 /* Application.m */,
+				E9B87EC51660068C004208C6 /* UITableViewCellAppList.h */,
+				E9B87EC61660068C004208C6 /* UITableViewCellAppList.m */,
 				E91ED00F165F2C8A002AB7B4 /* AppListTableViewController.h */,
 				E91ED010165F2C8A002AB7B4 /* AppListTableViewController.m */,
 				E91ED00E165F2C8A002AB7B4 /* AppListTableViewController_iPhone.xib */,
@@ -176,8 +212,6 @@
 				E91ED014165F2C8A002AB7B4 /* LoginViewController.m */,
 				E91ED012165F2C8A002AB7B4 /* LoginViewController_iPhone.xib */,
 				E91ED011165F2C8A002AB7B4 /* LoginViewController_iPad.xib */,
-				E9B87EC51660068C004208C6 /* UITableViewCellAppList.h */,
-				E9B87EC61660068C004208C6 /* UITableViewCellAppList.m */,
 			);
 			name = "AppList Tab";
 			sourceTree = "<group>";
@@ -283,6 +317,16 @@
 				E91ED02C165F2CC5002AB7B4 /* Default-568h@2x.png in Resources */,
 				E91ED02D165F2CC5002AB7B4 /* Default.png in Resources */,
 				E91ED02E165F2CC5002AB7B4 /* Default@2x.png in Resources */,
+				E9B87ED3166038F8004208C6 /* AppPlaceholder.png in Resources */,
+				E9B87ED4166038F8004208C6 /* AppPlaceholder@2x.png in Resources */,
+				E9B87ED5166038F8004208C6 /* AppPlaceholderLarge.png in Resources */,
+				E9B87ED6166038F8004208C6 /* AppPlaceholderLarge@2x.png in Resources */,
+				E9B87EE616604E09004208C6 /* Applications.png in Resources */,
+				E9B87EE716604E09004208C6 /* Applications@2x.png in Resources */,
+				E9B87EE816604E09004208C6 /* Crack.png in Resources */,
+				E9B87EE916604E09004208C6 /* Crack@2x.png in Resources */,
+				E9B87EEA16604E09004208C6 /* Settings.png in Resources */,
+				E9B87EEB16604E09004208C6 /* Settings@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

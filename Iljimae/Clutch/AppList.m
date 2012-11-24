@@ -6,7 +6,7 @@ NSArray * get_application_list(BOOL sort) {
 	NSArray *apps = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:NULL];
 	
 	if ([apps count] == 0) {
-		NSLog(@"no apps here.. probably running in simulator!");
+		//NSLog(@"no apps here.. probably running in simulator!");
         return NULL;
 	}
 	
@@ -48,7 +48,7 @@ NSArray * get_application_list(BOOL sort) {
 					if (bundleDisplayName == nil) {
 						bundleDisplayName = applicationRealname;
 					}
-                    NSLog(@"new app bros: %@", bundleDisplayName);
+                    //NSLog(@"new app bros: %@", bundleDisplayName);
                     
 					if ([[NSFileManager defaultManager] fileExistsAtPath:[basePath stringByAppendingFormat:@"%@/%@/SC_Info/", applicationDirectory, applicationSubdirectory]]) {
 						applicationDetailObject = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -64,7 +64,7 @@ NSArray * get_application_list(BOOL sort) {
 						[returnArray addObject:applicationDetailObject];
 						[cache setValue:applicationDetailObject forKey:applicationDirectory];
 						cflush = TRUE;
-                        NSLog(@"application detail %@", applicationDetailObject);
+                        //NSLog(@"application detail %@", applicationDetailObject);
 					}
 				}
 			}
