@@ -8,6 +8,7 @@
 
 #import "CrackTableViewController.h"
 #import "Application.h"
+#import "UITableViewCellCrackTableCell.h"
 
 @interface CrackTableViewController ()
 
@@ -26,13 +27,28 @@
 
 -(void)crackPressed:(NSNotification*)notification {
     Application* app = [notification object];
-    //TODO: crack 
+    UITableViewCellCrackTableCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"CrackTableCell"];
+    if (cell == nil) {
+        cell = [[UITableViewCellCrackTableCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:@"CrackTableCell"];
+    }
+    cell.appName = app.name;
+    if([app icon] == nil){
+        cell.imageView.image = [UIImage imageNamed:@"AppPlaceholder.png"];
+    } else {
+        //[cell.imageView.layer setCornerRadius:10.0/57.0*[app icon].size.width];
+        [cell.imageView.layer setCornerRadius:5.0];
+        [cell.imageView.layer setMasksToBounds:YES];
+        [cell setNeedsLayout];
+        cell.imageView.image = [app icon];
+    }
+    
 }
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(crackPressed) name:@"crackEvent" object:nil];
+    
+#warning TODO: more notifcation hooks
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

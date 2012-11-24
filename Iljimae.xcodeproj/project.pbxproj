@@ -14,6 +14,7 @@
 		AD08742516607AF300EA46AD /* scinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = AD08741E16607AF300EA46AD /* scinfo.m */; };
 		AD08742616607AF300EA46AD /* dump.m in Sources */ = {isa = PBXBuildFile; fileRef = AD08742016607AF300EA46AD /* dump.m */; };
 		AD08742716607AF300EA46AD /* sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = AD08742216607AF300EA46AD /* sha1.c */; };
+		AD08742B1661153900EA46AD /* UITableViewCellCrackTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD08742A1661153900EA46AD /* UITableViewCellCrackTableCell.m */; };
 		E91ED015165F2C8A002AB7B4 /* AppListTableViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E91ED00D165F2C8A002AB7B4 /* AppListTableViewController_iPad.xib */; };
 		E91ED016165F2C8A002AB7B4 /* AppListTableViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = E91ED00E165F2C8A002AB7B4 /* AppListTableViewController_iPhone.xib */; };
 		E91ED017165F2C8A002AB7B4 /* AppListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E91ED010165F2C8A002AB7B4 /* AppListTableViewController.m */; };
@@ -65,6 +66,8 @@
 		AD08742016607AF300EA46AD /* dump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dump.m; sourceTree = "<group>"; };
 		AD08742116607AF300EA46AD /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha1.h; sourceTree = "<group>"; };
 		AD08742216607AF300EA46AD /* sha1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha1.c; sourceTree = "<group>"; };
+		AD0874291661153900EA46AD /* UITableViewCellCrackTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UITableViewCellCrackTableCell.h; path = "Crack Tab/UITableViewCellCrackTableCell.h"; sourceTree = "<group>"; };
+		AD08742A1661153900EA46AD /* UITableViewCellCrackTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UITableViewCellCrackTableCell.m; path = "Crack Tab/UITableViewCellCrackTableCell.m"; sourceTree = "<group>"; };
 		E91ED00D165F2C8A002AB7B4 /* AppListTableViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AppListTableViewController_iPad.xib; path = "AppList Tab/AppListTableViewController_iPad.xib"; sourceTree = "<group>"; };
 		E91ED00E165F2C8A002AB7B4 /* AppListTableViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AppListTableViewController_iPhone.xib; path = "AppList Tab/AppListTableViewController_iPhone.xib"; sourceTree = "<group>"; };
 		E91ED00F165F2C8A002AB7B4 /* AppListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppListTableViewController.h; path = "AppList Tab/AppListTableViewController.h"; sourceTree = "<group>"; };
@@ -272,6 +275,8 @@
 			children = (
 				E91ED01D165F2CA4002AB7B4 /* CrackTableViewController.h */,
 				E91ED01E165F2CA4002AB7B4 /* CrackTableViewController.m */,
+				AD0874291661153900EA46AD /* UITableViewCellCrackTableCell.h */,
+				AD08742A1661153900EA46AD /* UITableViewCellCrackTableCell.m */,
 				E91ED01C165F2CA4002AB7B4 /* CrackTableViewController_iPhone.xib */,
 				E91ED01B165F2CA4002AB7B4 /* CrackTableViewController_iPad.xib */,
 			);
@@ -393,6 +398,7 @@
 				AD08742516607AF300EA46AD /* scinfo.m in Sources */,
 				AD08742616607AF300EA46AD /* dump.m in Sources */,
 				AD08742716607AF300EA46AD /* sha1.c in Sources */,
+				AD08742B1661153900EA46AD /* UITableViewCellCrackTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,6 +29,8 @@ void progress_message(char *msg) {
         free(bar_msg);
     bar_msg = malloc(strlen(msg) + 1);
     strcpy(bar_msg, msg);
+    NSDictionary* infoDict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSString stringWithFormat:@"%c", msg], @"Message", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ClutchProgressMessage" object:nil userInfo:infoDict];
     print_bar();
 }
 
@@ -42,6 +44,9 @@ void progress_percent(int percent) {
     
     if ((bar_percent < percent - 5) || (percent == 100) || (percent < 0)) {
         bar_percent = percent;
+        NSInteger* lol = percent;
+        NSDictionary* infoDict = [[NSDictionary alloc] initWithObjectsAndKeys:lol, @"Progress", nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ClutchProgressPercent" object:nil userInfo:infoDict];
         print_bar();
     }
 }
