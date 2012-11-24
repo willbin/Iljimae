@@ -7,8 +7,12 @@
 //
 
 #import "CrackTableViewController.h"
+
 #import "Application.h"
+
 #import "UITableViewCellCrackTableCell.h"
+
+#import <QuartzCore/QuartzCore.h>
 
 @interface CrackTableViewController ()
 
