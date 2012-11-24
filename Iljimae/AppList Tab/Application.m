@@ -10,7 +10,7 @@
 
 @implementation Application
 
-- (id)initWithapplicationDirectory:(NSString *)_applicationDirectory name:(NSString *)_name version:(NSString *)_version iconPath:(NSString *)_iconPath;
+- (id)initWithapplicationDirectory:(NSString *)_applicationDirectory baseName:(NSString*)_baseName name:(NSString *)_name version:(NSString *)_version iconPath:(NSString *)_iconPath
 {
     if (self = [super init]){
         applicationDirectory = _applicationDirectory;
@@ -18,6 +18,8 @@
         version = _version;
         iconPath = _iconPath;
         icon = nil;
+        applicationBasename = _baseName;   
+        
     }
     return self;
 }
@@ -35,6 +37,9 @@
 - (NSString *)version
 {
     return version;
+}
+-(NSString*) applicationBasename {
+    return applicationBasename;
 }
 
 - (UIImage *)icon

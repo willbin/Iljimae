@@ -39,6 +39,7 @@
     [super viewDidLoad];
     
     appList = get_application_list(true);
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -76,9 +77,9 @@
     
     //Configure cell to your liking, note the Application class
     
-    NSDictionary *dict = [self.appList objectAtIndex:indexPath.row];
+    Application *app = [self.appList objectAtIndex:indexPath.row];
 
-    Application *app = [[Application alloc] initWithapplicationDirectory:[dict objectForKey:@"ApplicationDirectory"] name:[dict objectForKey:@"ApplicationDisplayName"] version:[dict objectForKey:@"ApplicationVersion"] iconPath:[dict objectForKey:@"ApplicationIcon"]];
+    /*Application *app = [[Application alloc] initWithapplicationDirectory:[dict objectForKey:@"ApplicationDirectory"] name:[dict objectForKey:@"ApplicationDisplayName"] version:[dict objectForKey:@"ApplicationVersion"] iconPath:[dict objectForKey:@"ApplicationIcon"]];*/
 
     if([app icon] == nil){
         cell.imageView.image = [UIImage imageNamed:@"AppPlaceholder.png"];

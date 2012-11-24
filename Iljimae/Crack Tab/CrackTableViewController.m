@@ -7,6 +7,7 @@
 //
 
 #import "CrackTableViewController.h"
+#import "Application.h"
 
 @interface CrackTableViewController ()
 
@@ -23,10 +24,16 @@
     return self;
 }
 
+-(void)crackPressed:(NSNotification*)notification {
+    Application* app = [notification object];
+    //TODO: crack 
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(crackPressed) name:@"crackEvent" object:nil];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
