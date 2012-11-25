@@ -10,7 +10,7 @@
 
 @implementation Application
 
-- (id)initWithapplicationDirectory:(NSString *)_applicationDirectory baseName:(NSString*)_baseName name:(NSString *)_name version:(NSString *)_version iconPath:(NSString *)_iconPath
+- (id)initWithApplicationDirectory:(NSString *)_applicationDirectory baseName:(NSString*)_baseName name:(NSString *)_name version:(NSString *)_version iconPath:(NSString *)_iconPath
 {
     if (self = [super init]){
         applicationDirectory = _applicationDirectory;

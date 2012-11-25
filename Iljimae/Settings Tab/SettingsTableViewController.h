@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsTableViewController : UITableViewController
+@interface SettingsTableViewController : UITableViewController <UITableViewDataSource, UITextFieldDelegate>
+{
+    UITextField *basicUsername, *apptrackrUsername, *apptrackrPassword;
+}
 
+@property (nonatomic, strong) UITextField *basicUsername, *apptrackrUsername, *apptrackrPassword;
 @end

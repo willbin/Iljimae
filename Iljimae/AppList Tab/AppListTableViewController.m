@@ -8,7 +8,7 @@
 
 #import "AppListTableViewController.h"
 
-#import "AppList.h"
+#import "appList.h"
 
 #import "Application.h"
 
@@ -64,7 +64,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    NSLog(@"number of rows %@", [self.appList count]);
+    NSLog(@"number of rows %d", [self.appList count]);
     return [self.appList count];
 }
 
@@ -77,11 +77,11 @@
     }
     
     //Configure cell to your liking, note the Application class
+        
+    NSDictionary *dict = [self.appList objectAtIndex:indexPath.row];
     
-    Application *app = [self.appList objectAtIndex:indexPath.row];
-
-    /*Application *app = [[Application alloc] initWithapplicationDirectory:[dict objectForKey:@"ApplicationDirectory"] name:[dict objectForKey:@"ApplicationDisplayName"] version:[dict objectForKey:@"ApplicationVersion"] iconPath:[dict objectForKey:@"ApplicationIcon"]];*/
-
+    Application *app = [[Application alloc] initWithApplicationDirectory:[dict objectForKey:@"ApplicationDirectory"] baseName:[dict objectForKey:@"ApplicationBaseDirectory"] name:[dict objectForKey:@"ApplicationDisplayName"] version:[dict objectForKey:@"ApplicationVersion"] iconPath:@"ApplicationIcon"];
+    
     if([app icon] == nil){
         cell.imageView.image = [UIImage imageNamed:@"AppPlaceholder.png"];
     } else {

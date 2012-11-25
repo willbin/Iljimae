@@ -14,6 +14,8 @@
 
 @implementation SettingsTableViewController
 
+@synthesize basicUsername, apptrackrUsername, apptrackrPassword;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -33,6 +35,24 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UITextField *infoButton = [[UITextField alloc] init];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+    {
+        infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    } else {
+        infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    }
+    
+    [infoButton addTarget:self action:@selector(infoButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
+    [self.navigationItem setRightBarButtonItem:barButton];
+
+}
+
+- (void) infoButtonPressed
+{
+#warning Place your info stuff here ttwj
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,16 +65,47 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
+    if (section == 0) return 1;
+    if (section == 1) return 2;
     return 0;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    switch (section) {
+        case 0:
+            return @"Basics";
+            break;
+        case 1:
+            return @"apptrackr";
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    switch (section) {
+        case 0:
+            return @"Your crackername to be added to apps";
+            break;
+        case 1:
+            return @"Your apptrackr details to submit apps";
+            
+        default:
+            return nil;
+            break;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -66,6 +117,75 @@
     }
     
     // Configure the cell...
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    if (indexPath.section == 0)
+    {
+        // First Section in the table yo, username maybe?
+        basicUsername = [[UITextField alloc] init];
+        basicUsername.textColor = [UIColor blackColor];
+        basicUsername.adjustsFontSizeToFitWidth = NO;
+        basicUsername.autocorrectionType = UITextAutocorrectionTypeNo;
+        basicUsername.autocapitalizationType = UITextAutocorrectionTypeNo;
+        basicUsername.delegate = self;
+        if (indexPath.row == 0){
+            cell.textLabel.text = @"Username:";
+            basicUsername.placeholder = @"Username";
+            basicUsername.returnKeyType = UIReturnKeyDone;
+                
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone){
+                basicUsername.frame = CGRectMake(110, 12, 185, 30);
+            } else {
+                basicUsername.frame = CGRectMake(145, 12, 185, 30);
+            }
+        }
+        [cell addSubview:basicUsername];
+    }
+    else if (indexPath.section == 1){
+        
+        //Second Section - Apptrackr stuff?
+        apptrackrUsername = [[UITextField alloc] init];
+        apptrackrUsername.textColor = [UIColor blackColor];
+        apptrackrUsername.adjustsFontSizeToFitWidth = NO;
+        apptrackrUsername.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        apptrackrUsername.autocorrectionType = UITextAutocorrectionTypeNo;
+        apptrackrPassword.delegate = self;
+        
+        apptrackrPassword = [[UITextField alloc] init];
+        apptrackrPassword.textColor = [UIColor blackColor];
+        apptrackrPassword.adjustsFontSizeToFitWidth = NO;
+        apptrackrPassword.autocapitalizationType = UITextAutocorrectionTypeNo;
+        apptrackrPassword.autocorrectionType = UITextAutocorrectionTypeNo;
+        apptrackrPassword.secureTextEntry = YES;
+        apptrackrPassword.delegate = self;
+        
+        if (indexPath.row == 0){
+            cell.textLabel.text = @"Username:";
+            apptrackrUsername.placeholder = @"Username";
+            apptrackrUsername.returnKeyType = UIReturnKeyDone;
+            
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone){
+                apptrackrUsername.frame = CGRectMake(110, 12, 185, 30);
+            } else {
+                apptrackrUsername.frame = CGRectMake(145, 12, 185, 30);
+            }
+            
+            [cell addSubview:apptrackrUsername];
+            
+        } else if (indexPath.row == 1){
+            cell.textLabel.text = @"Password:";
+            apptrackrPassword.placeholder = @"Password";
+            apptrackrPassword.returnKeyType = UIReturnKeyDone;
+            
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone){
+                apptrackrPassword.frame = CGRectMake(110, 12, 185, 30);
+            } else {
+                apptrackrPassword.frame = CGRectMake(145, 12, 185, 30);
+            }
+        }
+        [cell addSubview:apptrackrPassword];
+    }
     
     return cell;
 }
@@ -109,6 +229,13 @@
 }
 */
 
+#pragma mark - Text field delegate
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+#warning Store variable needed anywhere else here - needs to be decided.
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -120,6 +247,15 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    if (indexPath.section == 0){
+        [basicUsername becomeFirstResponder];
+    } else if (indexPath.section == 1) {
+        if (indexPath.row == 0){
+            [apptrackrUsername becomeFirstResponder];
+        } else if (indexPath.row == 1) {
+            [apptrackrPassword becomeFirstResponder];
+        }
+    }
 }
 
 @end

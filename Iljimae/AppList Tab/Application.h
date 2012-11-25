@@ -21,6 +21,6 @@
 - (UIImage *)icon;
 - (NSString *)iconPath;
 
-- (id)initWithapplicationDirectory:(NSString *)_applicationDirectory baseName:(NSString*) _baseName name:(NSString *)_name version:(NSString *)_version iconPath:(NSString *)_iconPath;
+- (id)initWithApplicationDirectory:(NSString *)_applicationDirectory baseName:(NSString*) _baseName name:(NSString *)_name version:(NSString *)_version iconPath:(NSString *)_iconPath;
 
 @end
