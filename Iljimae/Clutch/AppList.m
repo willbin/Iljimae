@@ -65,7 +65,7 @@ NSArray * get_application_list(BOOL sort) {
                                                    applicationVersion, @"ApplicationVersion",
                                                    nil];*/
                         
-                        applicationInfo = [[Application alloc] initWithapplicationDirectory:[basePath stringByAppendingFormat:@"%@/%@/", applicationDirectory, applicationSubdirectory] baseName:[basePath stringByAppendingFormat:@"%@/", applicationDirectory] name:applicationRealname version:applicationVersion iconPath:applicationIcon];
+                        //applicationInfo = [[Application alloc] initWithapplicationDirectory:[basePath stringByAppendingFormat:@"%@/%@/", applicationDirectory, applicationSubdirectory] baseName:[basePath stringByAppendingFormat:@"%@/", applicationDirectory] name:applicationRealname version:applicationVersion iconPath:applicationIcon];
                         
 						[returnArray addObject:applicationInfo];
 						[cache setValue:applicationDetailObject forKey:applicationDirectory];

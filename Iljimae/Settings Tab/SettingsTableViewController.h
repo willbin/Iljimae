@@ -10,8 +10,12 @@
 
 @interface SettingsTableViewController : UITableViewController <UITableViewDataSource, UITextFieldDelegate>
 {
-    UITextField *basicUsername, *apptrackrUsername, *apptrackrPassword;
+    UITextField *crackerName, *apptrackrUsername, *apptrackrPassword;
+    
+    UIAlertView *infoAlert;
+    
+    UIActivityIndicatorView *apptrackrLoginActivityIndicator;
 }
 
-@property (nonatomic, strong) UITextField *basicUsername, *apptrackrUsername, *apptrackrPassword;
+@property (nonatomic, strong) UITextField *crackerName, *apptrackrUsername, *apptrackrPassword;
 @end

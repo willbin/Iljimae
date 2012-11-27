@@ -1,0 +1,6 @@
+[submodule "Iljimae/External Stuff/AppTrackrAPI-for-Obj-C"]
+	path = Iljimae/External Stuff/AppTrackrAPI-for-Obj-C
+	url = git@github.com:NinjaLikesCheez/AppTrackrAPI-for-Obj-C.git
+[submodule "External Stuff"]
+	path = External Stuff
+	url = git@github.com:NinjaLikesCheez/AppTrackrAPI-for-Obj-C.git

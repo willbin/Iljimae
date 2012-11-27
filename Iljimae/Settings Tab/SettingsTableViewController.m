@@ -8,13 +8,19 @@
 
 #import "SettingsTableViewController.h"
 
+#import "AppTrackrAPI.h"
+
+#import "NSString+NSString_MD5.h"
+
+#import "SBJson.h"
+
 @interface SettingsTableViewController ()
 
 @end
 
 @implementation SettingsTableViewController
 
-@synthesize basicUsername, apptrackrUsername, apptrackrPassword;
+@synthesize crackerName, apptrackrUsername, apptrackrPassword;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -53,6 +59,12 @@
 - (void) infoButtonPressed
 {
 #warning Place your info stuff here ttwj
+    infoAlert = [[UIAlertView alloc] initWithTitle:@"Iljimae v1.0"
+                                           message:@"Coded lovingly by FAULYCLONES"
+                                          delegate:self
+                                 cancelButtonTitle:nil
+                                 otherButtonTitles:@"Thanks FC!", nil];
+    [infoAlert show];
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,7 +85,7 @@
 {
     // Return the number of rows in the section.
     if (section == 0) return 1;
-    if (section == 1) return 2;
+    if (section == 1) return 3;
     return 0;
 }
 
@@ -81,7 +93,7 @@
 {
     switch (section) {
         case 0:
-            return @"Basics";
+            return @"Cracker Information";
             break;
         case 1:
             return @"apptrackr";
@@ -123,24 +135,24 @@
     if (indexPath.section == 0)
     {
         // First Section in the table yo, username maybe?
-        basicUsername = [[UITextField alloc] init];
-        basicUsername.textColor = [UIColor blackColor];
-        basicUsername.adjustsFontSizeToFitWidth = NO;
-        basicUsername.autocorrectionType = UITextAutocorrectionTypeNo;
-        basicUsername.autocapitalizationType = UITextAutocorrectionTypeNo;
-        basicUsername.delegate = self;
+        crackerName = [[UITextField alloc] init];
+        crackerName.textColor = [UIColor blackColor];
+        crackerName.adjustsFontSizeToFitWidth = NO;
+        crackerName.autocorrectionType = UITextAutocorrectionTypeNo;
+        crackerName.autocapitalizationType = UITextAutocorrectionTypeNo;
+        crackerName.delegate = self;
         if (indexPath.row == 0){
-            cell.textLabel.text = @"Username:";
-            basicUsername.placeholder = @"Username";
-            basicUsername.returnKeyType = UIReturnKeyDone;
+            cell.textLabel.text = @"Cracker Name: ";
+            crackerName.placeholder = @"Cracker Name";
+            crackerName.returnKeyType = UIReturnKeyDone;
                 
             if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone){
-                basicUsername.frame = CGRectMake(110, 12, 185, 30);
+                crackerName.frame = CGRectMake(143, 12, 185, 30);
             } else {
-                basicUsername.frame = CGRectMake(145, 12, 185, 30);
+                crackerName.frame = CGRectMake(178, 12, 185, 30);
             }
         }
-        [cell addSubview:basicUsername];
+        [cell addSubview:crackerName];
     }
     else if (indexPath.section == 1){
         
@@ -150,7 +162,7 @@
         apptrackrUsername.adjustsFontSizeToFitWidth = NO;
         apptrackrUsername.autocapitalizationType = UITextAutocapitalizationTypeNone;
         apptrackrUsername.autocorrectionType = UITextAutocorrectionTypeNo;
-        apptrackrPassword.delegate = self;
+        apptrackrUsername.delegate = self;
         
         apptrackrPassword = [[UITextField alloc] init];
         apptrackrPassword.textColor = [UIColor blackColor];
@@ -183,8 +195,16 @@
             } else {
                 apptrackrPassword.frame = CGRectMake(145, 12, 185, 30);
             }
+            [cell addSubview:apptrackrPassword];
+        } else if (indexPath.row == 2){
+            cell.textLabel.text = @"Login";
+            cell.textLabel.textAlignment = NSTextAlignmentCenter;
+            
+            apptrackrLoginActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            apptrackrLoginActivityIndicator.frame = CGRectMake(cell.contentView.center.x - 12.5, cell.contentView.center.y - 12.5, 25, 25);
+            
+            [cell addSubview:apptrackrLoginActivityIndicator];
         }
-        [cell addSubview:apptrackrPassword];
     }
     
     return cell;
@@ -234,6 +254,14 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
 #warning Store variable needed anywhere else here - needs to be decided.
+    
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    
+    return YES;
 }
 
 #pragma mark - Table view delegate
@@ -248,12 +276,14 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
     if (indexPath.section == 0){
-        [basicUsername becomeFirstResponder];
+        [crackerName becomeFirstResponder];
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0){
             [apptrackrUsername becomeFirstResponder];
         } else if (indexPath.row == 1) {
             [apptrackrPassword becomeFirstResponder];
+        } else if (indexPath.row == 2){
+            // Store apptrackr data
         }
     }
 }
