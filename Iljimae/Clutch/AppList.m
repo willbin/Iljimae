@@ -17,7 +17,6 @@ NSArray * get_application_list(BOOL sort) {
 	NSString *applicationSubdirectory;
     NSString *applicationIcon;
     NSString *applicationVersion;
-    Application *applicationInfo;
     NSDictionary *info;
     
 	NSMutableDictionary *cache = [NSMutableDictionary dictionaryWithContentsOfFile:@"/var/cache/clutch.plist"];
@@ -54,7 +53,7 @@ NSArray * get_application_list(BOOL sort) {
                     
 					if ([[NSFileManager defaultManager] fileExistsAtPath:[basePath stringByAppendingFormat:@"%@/%@/SC_Info/", applicationDirectory, applicationSubdirectory]]) {
                         
-						/*applicationDetailObject = [NSDictionary dictionaryWithObjectsAndKeys:
+						applicationDetailObject = [NSDictionary dictionaryWithObjectsAndKeys:
                                                    [basePath stringByAppendingFormat:@"%@/", applicationDirectory], @"ApplicationBaseDirectory",
                                                    [basePath stringByAppendingFormat:@"%@/%@/", applicationDirectory, applicationSubdirectory], @"ApplicationDirectory",
                                                    bundleDisplayName, @"ApplicationDisplayName",
@@ -63,11 +62,11 @@ NSArray * get_application_list(BOOL sort) {
                                                    applicationDirectory, @"RealUniqueID",
                                                    applicationIcon, @"ApplicationIcon",
                                                    applicationVersion, @"ApplicationVersion",
-                                                   nil];*/
+                                                   nil];
                         
                         //applicationInfo = [[Application alloc] initWithapplicationDirectory:[basePath stringByAppendingFormat:@"%@/%@/", applicationDirectory, applicationSubdirectory] baseName:[basePath stringByAppendingFormat:@"%@/", applicationDirectory] name:applicationRealname version:applicationVersion iconPath:applicationIcon];
                         
-						[returnArray addObject:applicationInfo];
+						[returnArray addObject:applicationDetailObject];
 						[cache setValue:applicationDetailObject forKey:applicationDirectory];
 						cflush = TRUE;
                         NSLog(@"application detail %@", applicationDetailObject);

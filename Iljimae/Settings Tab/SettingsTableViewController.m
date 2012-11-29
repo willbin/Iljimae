@@ -198,7 +198,7 @@
             [cell addSubview:apptrackrPassword];
         } else if (indexPath.row == 2){
             cell.textLabel.text = @"Login";
-            cell.textLabel.textAlignment = NSTextAlignmentCenter;
+            cell.textLabel.textAlignment = UITextAlignmentCenter;
             
             apptrackrLoginActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
             apptrackrLoginActivityIndicator.frame = CGRectMake(cell.contentView.center.x - 12.5, cell.contentView.center.y - 12.5, 25, 25);
