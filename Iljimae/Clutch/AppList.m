@@ -19,7 +19,7 @@ NSArray * get_application_list(BOOL sort) {
     NSString *applicationVersion;
     NSDictionary *info;
     
-	NSMutableDictionary *cache = [NSMutableDictionary dictionaryWithContentsOfFile:@"/var/cache/clutch.plist"];
+	NSMutableDictionary *cache = [NSMutableDictionary dictionaryWithContentsOfFile:@"/var/cache/Iljimae.plist"];
 	BOOL cflush = FALSE;
 	if ((cache == nil) || (![cache count])) {
 		cache = [NSMutableDictionary dictionary];

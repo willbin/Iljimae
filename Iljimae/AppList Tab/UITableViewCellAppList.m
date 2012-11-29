@@ -9,6 +9,7 @@
 #import "UITableViewCellAppList.h"
 
 @implementation UITableViewCellAppList
+@synthesize application = _application;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -46,7 +47,7 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-    // Configure the view for the selected state
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"crackEvent" object:self];
 }
 
 @end

@@ -95,7 +95,7 @@
     cell.version = [app version];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.selectionStyle = UITableViewCellSelectionStyleGray;
-    
+    cell.application = app;
     
     return cell;
 }

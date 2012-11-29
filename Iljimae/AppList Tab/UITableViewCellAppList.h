@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Application.h"
 
 @interface UITableViewCellAppList : UITableViewCell
 {
     NSString *version;
     UILabel *versionLabel;
+    Application *_application;
 }
-
+@property (nonatomic, strong) Application *application;
 - (void)setVersion:(NSString *)_version;
 
 @end

@@ -7,12 +7,10 @@
 //
 
 #import "CrackTableViewController.h"
-
 #import "Application.h"
-
 #import "UITableViewCellCrackTableCell.h"
-
 #import <QuartzCore/QuartzCore.h>
+#import "crack.h"
 
 @interface CrackTableViewController ()
 
@@ -45,6 +43,10 @@
         [cell setNeedsLayout];
         cell.imageView.image = [app icon];
     }
+    NSArray* array = [NSArray arrayWithObject:cell];
+    [self.tableView insertRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationBottom];
+    NSString* yolo = crack_application(app.applicationDirectory, app.applicationBasename);
+    NSLog(@"cracking completed %@", yolo);
     
 }
 - (void)viewDidLoad
