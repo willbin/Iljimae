@@ -75,15 +75,6 @@
 		E9C7B8F416642D0300EDE4C6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9C7B74E16642D0300EDE4C6 /* InfoPlist.strings */; };
 		E9C7B8F516642D0300EDE4C6 /* SBJson-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9C7B75016642D0300EDE4C6 /* SBJson-Info.plist */; };
 		E9C7B8F816642D0300EDE4C6 /* SBJson.xcworkspace in Resources */ = {isa = PBXBuildFile; fileRef = E9C7B75C16642D0300EDE4C6 /* SBJson.xcworkspace */; };
-		E9C7BA3616642D2300EDE4C6 /* README in Resources */ = {isa = PBXBuildFile; fileRef = E9C7BA1E16642D2300EDE4C6 /* README */; };
-		E9C7BA3716642D2300EDE4C6 /* APIStatusCode.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C7BA2116642D2300EDE4C6 /* APIStatusCode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		E9C7BA3816642D2300EDE4C6 /* App.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C7BA2416642D2300EDE4C6 /* App.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		E9C7BA3916642D2300EDE4C6 /* Bundle.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C7BA2816642D2300EDE4C6 /* Bundle.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		E9C7BA3A16642D2300EDE4C6 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C7BA2B16642D2300EDE4C6 /* Category.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		E9C7BA3B16642D2300EDE4C6 /* Link.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C7BA2E16642D2300EDE4C6 /* Link.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		E9C7BA3C16642D2300EDE4C6 /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C7BA3016642D2300EDE4C6 /* Request.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		E9C7BA3D16642D2300EDE4C6 /* Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C7BA3316642D2300EDE4C6 /* Screenshot.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		E9C7BA3E16642D2300EDE4C6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C7BA3516642D2300EDE4C6 /* User.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -221,24 +212,6 @@
 		E9C7B75116642D0300EDE4C6 /* SBJson-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SBJson-Prefix.pch"; sourceTree = "<group>"; };
 		E9C7B75916642D0300EDE4C6 /* SBJson.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SBJson.xcodeproj; sourceTree = "<group>"; };
 		E9C7B75C16642D0300EDE4C6 /* SBJson.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = SBJson.xcworkspace; sourceTree = "<group>"; };
-		E9C7BA1E16642D2300EDE4C6 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
-		E9C7BA2016642D2300EDE4C6 /* APIStatusCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIStatusCode.h; sourceTree = "<group>"; };
-		E9C7BA2116642D2300EDE4C6 /* APIStatusCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIStatusCode.m; sourceTree = "<group>"; };
-		E9C7BA2316642D2300EDE4C6 /* App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = App.h; sourceTree = "<group>"; };
-		E9C7BA2416642D2300EDE4C6 /* App.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = App.m; sourceTree = "<group>"; };
-		E9C7BA2516642D2300EDE4C6 /* AppTrackrAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppTrackrAPI.h; sourceTree = "<group>"; };
-		E9C7BA2716642D2300EDE4C6 /* Bundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bundle.h; sourceTree = "<group>"; };
-		E9C7BA2816642D2300EDE4C6 /* Bundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bundle.m; sourceTree = "<group>"; };
-		E9C7BA2A16642D2300EDE4C6 /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
-		E9C7BA2B16642D2300EDE4C6 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
-		E9C7BA2D16642D2300EDE4C6 /* Link.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Link.h; sourceTree = "<group>"; };
-		E9C7BA2E16642D2300EDE4C6 /* Link.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Link.m; sourceTree = "<group>"; };
-		E9C7BA2F16642D2300EDE4C6 /* Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
-		E9C7BA3016642D2300EDE4C6 /* Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
-		E9C7BA3216642D2300EDE4C6 /* Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Screenshot.h; sourceTree = "<group>"; };
-		E9C7BA3316642D2300EDE4C6 /* Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Screenshot.m; sourceTree = "<group>"; };
-		E9C7BA3416642D2300EDE4C6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		E9C7BA3516642D2300EDE4C6 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -389,7 +362,6 @@
 			isa = PBXGroup;
 			children = (
 				AD2C49C716670928003AAE48 /* MBProgressHUD */,
-				E9C7BA1D16642D2300EDE4C6 /* AppTrackrAPI-for-Obj-C */,
 				E9C7B70116642D0300EDE4C6 /* json-framework */,
 			);
 			name = "External Stuff";
@@ -488,80 +460,6 @@
 				E9C7BA1516642D0400EDE4C6 /* sbjson-iosTests.octest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		E9C7BA1D16642D2300EDE4C6 /* AppTrackrAPI-for-Obj-C */ = {
-			isa = PBXGroup;
-			children = (
-				E9C7BA1E16642D2300EDE4C6 /* README */,
-				E9C7BA1F16642D2300EDE4C6 /* Source */,
-			);
-			name = "AppTrackrAPI-for-Obj-C";
-			path = "External Stuff/AppTrackrAPI-for-Obj-C";
-			sourceTree = SOURCE_ROOT;
-		};
-		E9C7BA1F16642D2300EDE4C6 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				E9C7BA2016642D2300EDE4C6 /* APIStatusCode.h */,
-				E9C7BA2116642D2300EDE4C6 /* APIStatusCode.m */,
-				E9C7BA2216642D2300EDE4C6 /* App */,
-				E9C7BA2516642D2300EDE4C6 /* AppTrackrAPI.h */,
-				E9C7BA2616642D2300EDE4C6 /* Bundle */,
-				E9C7BA2916642D2300EDE4C6 /* Category */,
-				E9C7BA2C16642D2300EDE4C6 /* Link */,
-				E9C7BA2F16642D2300EDE4C6 /* Request.h */,
-				E9C7BA3016642D2300EDE4C6 /* Request.m */,
-				E9C7BA3116642D2300EDE4C6 /* User */,
-			);
-			path = Source;
-			sourceTree = "<group>";
-		};
-		E9C7BA2216642D2300EDE4C6 /* App */ = {
-			isa = PBXGroup;
-			children = (
-				E9C7BA2316642D2300EDE4C6 /* App.h */,
-				E9C7BA2416642D2300EDE4C6 /* App.m */,
-			);
-			path = App;
-			sourceTree = "<group>";
-		};
-		E9C7BA2616642D2300EDE4C6 /* Bundle */ = {
-			isa = PBXGroup;
-			children = (
-				E9C7BA2716642D2300EDE4C6 /* Bundle.h */,
-				E9C7BA2816642D2300EDE4C6 /* Bundle.m */,
-			);
-			path = Bundle;
-			sourceTree = "<group>";
-		};
-		E9C7BA2916642D2300EDE4C6 /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				E9C7BA2A16642D2300EDE4C6 /* Category.h */,
-				E9C7BA2B16642D2300EDE4C6 /* Category.m */,
-			);
-			path = Category;
-			sourceTree = "<group>";
-		};
-		E9C7BA2C16642D2300EDE4C6 /* Link */ = {
-			isa = PBXGroup;
-			children = (
-				E9C7BA2D16642D2300EDE4C6 /* Link.h */,
-				E9C7BA2E16642D2300EDE4C6 /* Link.m */,
-			);
-			path = Link;
-			sourceTree = "<group>";
-		};
-		E9C7BA3116642D2300EDE4C6 /* User */ = {
-			isa = PBXGroup;
-			children = (
-				E9C7BA3216642D2300EDE4C6 /* Screenshot.h */,
-				E9C7BA3316642D2300EDE4C6 /* Screenshot.m */,
-				E9C7BA3416642D2300EDE4C6 /* User.h */,
-				E9C7BA3516642D2300EDE4C6 /* User.m */,
-			);
-			path = User;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -686,7 +584,6 @@
 				E9C7B8F416642D0300EDE4C6 /* InfoPlist.strings in Resources */,
 				E9C7B8F516642D0300EDE4C6 /* SBJson-Info.plist in Resources */,
 				E9C7B8F816642D0300EDE4C6 /* SBJson.xcworkspace in Resources */,
-				E9C7BA3616642D2300EDE4C6 /* README in Resources */,
 				AD2C49C816670928003AAE48 /* MBProgressHUD in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -744,14 +641,6 @@
 				E9C7B8D916642D0300EDE4C6 /* SBJsonTokeniser.m in Sources */,
 				E9C7B8DA16642D0300EDE4C6 /* SBJsonUTF8Stream.m in Sources */,
 				E9C7B8DB16642D0300EDE4C6 /* SBJsonWriter.m in Sources */,
-				E9C7BA3716642D2300EDE4C6 /* APIStatusCode.m in Sources */,
-				E9C7BA3816642D2300EDE4C6 /* App.m in Sources */,
-				E9C7BA3916642D2300EDE4C6 /* Bundle.m in Sources */,
-				E9C7BA3A16642D2300EDE4C6 /* Category.m in Sources */,
-				E9C7BA3B16642D2300EDE4C6 /* Link.m in Sources */,
-				E9C7BA3C16642D2300EDE4C6 /* Request.m in Sources */,
-				E9C7BA3D16642D2300EDE4C6 /* Screenshot.m in Sources */,
-				E9C7BA3E16642D2300EDE4C6 /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
