@@ -26,7 +26,7 @@
     }
     return self;
 }
-
+#error not working please fix - ttwj
 -(void)crackPressed:(NSNotification*)notification {
     NSLog(@"crackPressed event handled");
     NSDictionary* userInfo = [notification userInfo];
