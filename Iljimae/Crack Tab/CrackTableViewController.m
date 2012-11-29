@@ -28,7 +28,9 @@
 }
 
 -(void)crackPressed:(NSNotification*)notification {
-    Application* app = [notification object];
+    NSLog(@"crackPressed event handled");
+    NSDictionary* userInfo = [notification userInfo];
+    Application* app = [userInfo objectForKey:@"cell"];
     UITableViewCellCrackTableCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"CrackTableCell"];
     if (cell == nil) {
         cell = [[UITableViewCellCrackTableCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:@"CrackTableCell"];

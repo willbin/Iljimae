@@ -47,7 +47,6 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"crackEvent" object:self];
 }
 
 @end

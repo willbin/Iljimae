@@ -143,6 +143,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UITableViewCellAppList* cell = (UITableViewCellAppList*) [self.tableView cellForRowAtIndexPath:indexPath];
+    NSLog(@"crackEvent called!");
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObject:cell forKey:@"cell"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"crackEvent" object:self userInfo:userInfo];
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
