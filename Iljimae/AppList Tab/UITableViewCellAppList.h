@@ -11,11 +11,11 @@
 
 @interface UITableViewCellAppList : UITableViewCell
 {
-    NSString *version;
-    UILabel *versionLabel;
-    Application *_application;
+    Application *application;
 }
+
+- (Application*)application;
+
 @property (nonatomic, strong) Application *application;
-- (void)setVersion:(NSString *)_version;
 
 @end

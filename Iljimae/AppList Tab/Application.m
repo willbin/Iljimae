@@ -24,6 +24,24 @@
     return self;
 }
 
+- (id)initWithIPAFileAtPath:(NSString *)_path
+{
+    if (self = [super init]){
+        path = _path;
+    }
+    
+    //
+    
+    // Get all IPA information ready here - will do later.
+    
+    return self;
+}
+
+- (NSString *)path
+{
+    return path;
+}
+
 - (NSString *) applicationDirectory
 {
     return applicationDirectory;

@@ -11,12 +11,18 @@
 #import "UITableViewCellCrackTableCell.h"
 #import <QuartzCore/QuartzCore.h>
 #import "crack.h"
+#import "UITableViewCellCrackTableCell.h"
+#import "CrackedApplication.h"
+
+NSString const *path = @"/var/root/Documents/Cracked";
 
 @interface CrackTableViewController ()
 
 @end
 
 @implementation CrackTableViewController
+
+@synthesize appList;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -26,43 +32,41 @@
     }
     return self;
 }
-#error not working please fix - ttwj
--(void)crackPressed:(NSNotification*)notification {
-    NSLog(@"crackPressed event handled");
-    NSDictionary* userInfo = [notification userInfo];
-    Application* app = [userInfo objectForKey:@"cell"];
-    UITableViewCellCrackTableCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"CrackTableCell"];
-    if (cell == nil) {
-        cell = [[UITableViewCellCrackTableCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:@"CrackTableCell"];
-    }
-    cell.appName = app.name;
-    if([app icon] == nil){
-        cell.imageView.image = [UIImage imageNamed:@"AppPlaceholder.png"];
-    } else {
-        //[cell.imageView.layer setCornerRadius:10.0/57.0*[app icon].size.width];
-        [cell.imageView.layer setCornerRadius:5.0];
-        [cell.imageView.layer setMasksToBounds:YES];
-        [cell setNeedsLayout];
-        cell.imageView.image = [app icon];
-    }
-    NSArray* array = [NSArray arrayWithObject:cell];
-    [self.tableView insertRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationBottom];
-    NSString* yolo = crack_application(app.applicationDirectory, app.applicationBasename);
-    NSLog(@"cracking completed %@", yolo);
-    
-}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(crackPressed) name:@"crackEvent" object:nil];
-    
-#warning TODO: more notifcation hooks
-    
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(crackPressed) name:@"crackEvent" object:nil];
+        
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    /*NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *directoryContents = [fileManager contentsOfDirectoryAtPath:@"/var/root/Documents/Cracked" error:nil];
+    NSPredicate *filter = [NSPredicate predicateWithFormat:@"self ENDSWITH '.ipa'"];
+    NSArray *ipaFiles = [directoryContents filteredArrayUsingPredicate:filter];
+    
+    NSMutableArray *unsortedArray = [[NSMutableArray alloc] init];
+    for (int i=0;i<[ipaFiles count]; i++)
+    {
+        Application *application = [[Application alloc] initWithIPAFileAtPath:[ipaFiles objectAtIndex:i]];
+        [unsortedArray addObject:application];
+    }
+    
+    [appList sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];*/
+    
+    NSFileManager *fm = [NSFileManager defaultManager];
+    appList= [fm contentsOfDirectoryAtPath:path error:nil];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                     message:[NSString stringWithFormat:@"%@", appList]
+                                                    delegate:self
+                                           cancelButtonTitle:@"l"
+                                           otherButtonTitles:nil, nil];
+    [alert show];
 }
 
 - (void)didReceiveMemoryWarning
@@ -71,33 +75,60 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma mark - Crack stuff
+
+-(void)addApplicationToTable:(Application *)application
+{
+    [appList addObject:application];
+    [self.tableView reloadData];
+}
+
+-(BOOL)crackApplication:(Application *)application
+{
+    NSLog(@"Crack Called");
+    return YES;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.appList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"CrackTableCell";
+    UITableViewCellCrackTableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCellCrackTableCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell...
     
+    NSString *tempHolder = [appList objectAtIndex:indexPath.row];
+    NSString *pathToApp = [NSString stringWithFormat:@"%@/%@/Payload/%@/", path, tempHolder, [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[NSString stringWithFormat:@"%@/%@/Payload/", path, tempHolder] error:nil]];
+    
+    NSLog(@"%@", pathToApp);
+    
+    CrackedApplication *crackedApp = [[CrackedApplication alloc] initFromPath:pathToApp];
+    
+    cell.textLabel.text = crackedApp.name;
+    
     return cell;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 65;
 }
 
 /*

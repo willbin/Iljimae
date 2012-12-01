@@ -10,7 +10,7 @@
 
 @interface Application : NSObject
 {
-    NSString *name, *version, *iconPath, *applicationDirectory, *applicationBasename;
+    NSString *name, *version, *iconPath, *applicationDirectory, *applicationBasename, *path;
     UIImage *icon;
 }
 
@@ -20,7 +20,9 @@
 - (NSString *)version;
 - (UIImage *)icon;
 - (NSString *)iconPath;
+- (NSString *)path;
 
 - (id)initWithApplicationDirectory:(NSString *)_applicationDirectory baseName:(NSString*) _baseName name:(NSString *)_name version:(NSString *)_version iconPath:(NSString *)_iconPath;
+-(id)initWithIPAFileAtPath:(NSString*)_path;
 
 @end

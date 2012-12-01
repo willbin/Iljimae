@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppListTableViewController : UITableViewController
+#import "Application.h"
+
+@interface AppListTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 {
     NSArray *appList;
 }

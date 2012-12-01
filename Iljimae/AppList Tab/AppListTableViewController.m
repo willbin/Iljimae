@@ -16,6 +16,8 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+#import "CrackTableViewController.h"
+
 @implementation AppListTableViewController
 
 @synthesize appList;
@@ -71,9 +73,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    UITableViewCellAppList *cell = [tableView dequeueReusableCellWithIdentifier:@"AppListTableCell"];
+    /*UITableViewCellAppList *cell = [tableView dequeueReusableCellWithIdentifier:@"AppListTableCell"];
     if (cell == nil) {
-        cell = [[UITableViewCellAppList alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AppListTableCell"];
+        cell = [[UITableViewCellAppList alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"AppListTableCell"];
+    }*/
+    
+    static NSString *cellIdentifier = @"CellIdentifier";
+    UITableViewCellAppList *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCellAppList alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
     
     //Configure cell to your liking, note the Application class
@@ -85,14 +93,13 @@
     if([app icon] == nil){
         cell.imageView.image = [UIImage imageNamed:@"AppPlaceholder.png"];
     } else {
-        //[cell.imageView.layer setCornerRadius:10.0/57.0*[app icon].size.width];
         [cell.imageView.layer setCornerRadius:5.0];
         [cell.imageView.layer setMasksToBounds:YES];
         [cell setNeedsLayout];
         cell.imageView.image = [app icon];
     }
     cell.textLabel.text = [app name];
-    cell.version = [app version];
+    cell.detailTextLabel.text = [app version];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.selectionStyle = UITableViewCellSelectionStyleGray;
     cell.application = app;
@@ -100,60 +107,16 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCellAppList* cell = (UITableViewCellAppList*) [self.tableView cellForRowAtIndexPath:indexPath];
+    /*UITableViewCellAppList* cell = (UITableViewCellAppList*) [self.tableView cellForRowAtIndexPath:indexPath];
     NSLog(@"crackEvent called!");
     NSDictionary* userInfo = [NSDictionary dictionaryWithObject:cell forKey:@"cell"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"crackEvent" object:self userInfo:userInfo];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"crackEvent" object:self userInfo:userInfo];*/
     // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

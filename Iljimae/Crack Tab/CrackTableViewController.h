@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CrackTableViewController : UITableViewController
+#import "Application.h"
+
+@interface CrackTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
+{
+    NSMutableArray *appList;
+    
+}
+
+@property (nonatomic,strong) NSArray *appList;
 
 @end

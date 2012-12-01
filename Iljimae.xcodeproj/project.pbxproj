@@ -37,7 +37,6 @@
 		E9410BAF165F0EE800CBDF31 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9410BAD165F0EE800CBDF31 /* InfoPlist.strings */; };
 		E9410BB1165F0EE800CBDF31 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E9410BB0165F0EE800CBDF31 /* main.m */; };
 		E9410BB5165F0EE800CBDF31 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9410BB4165F0EE800CBDF31 /* AppDelegate.m */; };
-		E98BCD2D1662C43E00B4C0A8 /* NLCUploadData.m in Sources */ = {isa = PBXBuildFile; fileRef = E98BCD2C1662C43E00B4C0A8 /* NLCUploadData.m */; };
 		E9B87EC81660068C004208C6 /* UITableViewCellAppList.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B87EC61660068C004208C6 /* UITableViewCellAppList.m */; };
 		E9B87ED3166038F8004208C6 /* AppPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B87ECF166038F8004208C6 /* AppPlaceholder.png */; };
 		E9B87ED4166038F8004208C6 /* AppPlaceholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B87ED0166038F8004208C6 /* AppPlaceholder@2x.png */; };
@@ -72,6 +71,7 @@
 		E9D431F416674FF9004AD3CC /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D431E516674FF9004AD3CC /* SBJsonTokeniser.m */; };
 		E9D431F516674FF9004AD3CC /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D431E716674FF9004AD3CC /* SBJsonUTF8Stream.m */; };
 		E9D431F616674FF9004AD3CC /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D431E916674FF9004AD3CC /* SBJsonWriter.m */; };
+		E9F2C9211668A5D4001C391C /* CrackedApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F2C9201668A5D4001C391C /* CrackedApplication.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,8 +122,6 @@
 		E9410BB2165F0EE800CBDF31 /* Iljimae-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Iljimae-Prefix.pch"; sourceTree = "<group>"; };
 		E9410BB3165F0EE800CBDF31 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E9410BB4165F0EE800CBDF31 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		E98BCD2B1662C43E00B4C0A8 /* NLCUploadData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLCUploadData.h; sourceTree = "<group>"; };
-		E98BCD2C1662C43E00B4C0A8 /* NLCUploadData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCUploadData.m; sourceTree = "<group>"; };
 		E9B87EC51660068C004208C6 /* UITableViewCellAppList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UITableViewCellAppList.h; path = "AppList Tab/UITableViewCellAppList.h"; sourceTree = "<group>"; };
 		E9B87EC61660068C004208C6 /* UITableViewCellAppList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UITableViewCellAppList.m; path = "AppList Tab/UITableViewCellAppList.m"; sourceTree = "<group>"; };
 		E9B87ECF166038F8004208C6 /* AppPlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppPlaceholder.png; path = Images/AppPlaceholder.png; sourceTree = "<group>"; };
@@ -182,6 +180,8 @@
 		E9D431E716674FF9004AD3CC /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		E9D431E816674FF9004AD3CC /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		E9D431E916674FF9004AD3CC /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		E9F2C91F1668A5D4001C391C /* CrackedApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrackedApplication.h; sourceTree = "<group>"; };
+		E9F2C9201668A5D4001C391C /* CrackedApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrackedApplication.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,11 +253,9 @@
 			children = (
 				E9D42D911667425C004AD3CC /* External */,
 				E9C7B6FB166428C000EDE4C6 /* Categories */,
-				E98BCD2B1662C43E00B4C0A8 /* NLCUploadData.h */,
-				E98BCD2C1662C43E00B4C0A8 /* NLCUploadData.m */,
-				AD0873F5165F39BA00EA46AD /* Clutch */,
 				E9410BB3165F0EE800CBDF31 /* AppDelegate.h */,
 				E9410BB4165F0EE800CBDF31 /* AppDelegate.m */,
+				AD0873F5165F39BA00EA46AD /* Clutch */,
 				E9410BE7165F110000CBDF31 /* AppList Tab */,
 				E9410BF9165F193C00CBDF31 /* Crack Tab */,
 				E9410BEF165F150B00CBDF31 /* Settings Tab */,
@@ -331,6 +329,8 @@
 		E9410BF9165F193C00CBDF31 /* Crack Tab */ = {
 			isa = PBXGroup;
 			children = (
+				E9F2C91F1668A5D4001C391C /* CrackedApplication.h */,
+				E9F2C9201668A5D4001C391C /* CrackedApplication.m */,
 				E91ED01D165F2CA4002AB7B4 /* CrackTableViewController.h */,
 				E91ED01E165F2CA4002AB7B4 /* CrackTableViewController.m */,
 				AD0874291661153900EA46AD /* UITableViewCellCrackTableCell.h */,
@@ -568,7 +568,6 @@
 				E9234CB5165FF75700AD9535 /* Application.m in Sources */,
 				E9B87EC81660068C004208C6 /* UITableViewCellAppList.m in Sources */,
 				AD08742B1661153900EA46AD /* UITableViewCellCrackTableCell.m in Sources */,
-				E98BCD2D1662C43E00B4C0A8 /* NLCUploadData.m in Sources */,
 				E918AB5B1662DC94004DCEBA /* AppList.m in Sources */,
 				E918AB5C1662DC94004DCEBA /* ClutchConfiguration.m in Sources */,
 				E918AB5D1662DC94004DCEBA /* crack.m in Sources */,
@@ -597,6 +596,7 @@
 				E9D431F416674FF9004AD3CC /* SBJsonTokeniser.m in Sources */,
 				E9D431F516674FF9004AD3CC /* SBJsonUTF8Stream.m in Sources */,
 				E9D431F616674FF9004AD3CC /* SBJsonWriter.m in Sources */,
+				E9F2C9211668A5D4001C391C /* CrackedApplication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,8 +627,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -663,8 +663,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -684,7 +684,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -701,7 +701,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos5.1;
+				SDKROOT = iphoneos6.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -710,7 +710,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
@@ -726,7 +726,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos5.1;
+				SDKROOT = iphoneos6.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
