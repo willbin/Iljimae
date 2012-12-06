@@ -30,14 +30,26 @@
     
     // Get the icon, $10 says this doesn't work
     NSArray *iconDict = [info objectForKey:@"CFBundleIconFiles"];
-    NSString *iconPath = [NSString stringWithFormat:@"%@/%@", path, [iconDict objectAtIndex:0]]; // Item 0 should equal Icon.png
+    int i = 0;
+    bool found = FALSE;
+    NSString* iconPath;
+    NSLog(@"icon dictionaries %@", iconDict);
+    while (found == FALSE) {
+        iconPath = [NSString stringWithFormat:@"%@/%@", path, [iconDict objectAtIndex:i]]; // Item 0 should equal Icon.png
+        if (![iconPath hasSuffix:@".png"]) iconPath = [iconPath stringByAppendingString:@".png"];
+        //swag brah
+        NSLog(@"YOLO SWAG 1234 %@", iconPath);
+        if ([[NSFileManager defaultManager] fileExistsAtPath:iconPath]) {
+            break;
+        }
+        i++;
+    }
     
     NSLog(@"%@", iconPath);
     
     // Le brute force
     
-    if (![iconPath hasSuffix:@".png"]) iconPath = [iconPath stringByAppendingString:@".png"];
-    icon = [UIImage imageWithContentsOfFile:iconPath];
+        icon = [UIImage imageWithContentsOfFile:iconPath];
     
     // Sometimes Info.plist is a bit fucked, try Icon.png
     if (icon == nil){
