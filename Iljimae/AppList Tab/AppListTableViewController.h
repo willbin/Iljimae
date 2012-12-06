@@ -12,9 +12,9 @@
 
 @interface AppListTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 {
-    NSArray *appList;
+    NSMutableArray *appList;
 }
 
-@property (nonatomic, strong) NSArray *appList;
+@property (nonatomic, strong) NSMutableArray *appList;
 
 @end

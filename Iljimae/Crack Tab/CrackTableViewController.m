@@ -59,7 +59,7 @@ NSString const *path = @"/var/root/Documents/Cracked";
     [appList sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];*/
     
     NSFileManager *fm = [NSFileManager defaultManager];
-    appList= [fm contentsOfDirectoryAtPath:path error:nil];
+    appList = [fm contentsOfDirectoryAtPath:path error:nil];
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
                                                      message:[NSString stringWithFormat:@"%@", appList]
@@ -115,13 +115,21 @@ NSString const *path = @"/var/root/Documents/Cracked";
     // Configure the cell...
     
     NSString *tempHolder = [appList objectAtIndex:indexPath.row];
-    NSString *pathToApp = [NSString stringWithFormat:@"%@/%@/Payload/%@/", path, tempHolder, [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[NSString stringWithFormat:@"%@/%@/Payload/", path, tempHolder] error:nil]];
+    NSString *pathToPayload = [NSString stringWithFormat:@"%@/%@/Payload/", path, tempHolder];
+    NSError *error;
+    NSArray *fm = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:pathToPayload error:&error];
+    NSString *pathToApp = [NSString stringWithFormat:@"%@%@", pathToPayload, [fm objectAtIndex:0]];
     
-    NSLog(@"%@", pathToApp);
+
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Err" message:[NSString stringWithFormat:@"%@", pathToApp] delegate:self cancelButtonTitle:@"k" otherButtonTitles:nil, nil];
+    [alert show];
     
     CrackedApplication *crackedApp = [[CrackedApplication alloc] initFromPath:pathToApp];
     
     cell.textLabel.text = crackedApp.name;
+    
+    //cell.textLabel.text = [appList objectAtIndex:indexPath.row];
+    cell.selectionStyle = UITableViewCellSelectionStyleGray;
     
     return cell;
 }

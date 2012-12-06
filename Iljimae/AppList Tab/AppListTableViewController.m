@@ -18,6 +18,8 @@
 
 #import "CrackTableViewController.h"
 
+#import "crack.h"
+
 @implementation AppListTableViewController
 
 @synthesize appList;
@@ -40,13 +42,33 @@
 {
     [super viewDidLoad];
     
-    appList = get_application_list(true);
+    /*NSArray *appListTemp = get_application_list(true);
+    
+    for(int i=0; i<[appListTemp count]; i++)
+    {
+        NSDictionary *dict = [appListTemp objectAtIndex:i];
+        
+        Application *app = [[Application alloc] initWithApplicationDirectory:[dict objectForKey:@"ApplicationDirectory"] baseName:[dict objectForKey:@"ApplicationBaseDirectory"] name:[dict objectForKey:@"ApplicationDisplayName"] version:[dict objectForKey:@"ApplicationVersion"] iconPath:@"ApplicationIcon"];
+        
+        [appList insertObject:app atIndex:i];
+    }*/
+    
+    appList = get_application_list(YES);
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (NSString *)crackApplication:(Application*)application
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSString *ipapath = crack_application([application applicationBasename], [application applicationDirectory]);
+        dispatch_async(dispatch_get_main_queue(), ^{
+        });
+    });
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,12 +94,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    /*UITableViewCellAppList *cell = [tableView dequeueReusableCellWithIdentifier:@"AppListTableCell"];
-    if (cell == nil) {
-        cell = [[UITableViewCellAppList alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"AppListTableCell"];
-    }*/
-    
     static NSString *cellIdentifier = @"CellIdentifier";
     UITableViewCellAppList *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
@@ -85,8 +101,8 @@
     }
     
     //Configure cell to your liking, note the Application class
-        
-    NSDictionary *dict = [self.appList objectAtIndex:indexPath.row];
+    NSDictionary *dict = [appList objectAtIndex:indexPath.row];
+    //Application *app = [appList objectAtIndex:indexPath.row];
     
     Application *app = [[Application alloc] initWithApplicationDirectory:[dict objectForKey:@"ApplicationDirectory"] baseName:[dict objectForKey:@"ApplicationBaseDirectory"] name:[dict objectForKey:@"ApplicationDisplayName"] version:[dict objectForKey:@"ApplicationVersion"] iconPath:@"ApplicationIcon"];
     
@@ -116,6 +132,14 @@
     NSDictionary* userInfo = [NSDictionary dictionaryWithObject:cell forKey:@"cell"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"crackEvent" object:self userInfo:userInfo];*/
     // Navigation logic may go here. Create and push another view controller.
+    
+    UITableViewCellAppList *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    NSLog(@"Crack");
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self crackApplication:cell.application];
+    });
     
 }
 

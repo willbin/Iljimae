@@ -468,7 +468,6 @@
 				E9410B9C165F0EE700CBDF31 /* Sources */,
 				E9410B9D165F0EE700CBDF31 /* Frameworks */,
 				E9410B9E165F0EE700CBDF31 /* Resources */,
-				50524F424C454D533F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -537,22 +536,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		50524F424C454D533F /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#export CODESIGN_ALLOCATE=/Library/JailCoder/codesign_allocate\nexport CODESIGN_ALLOCATE=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate\n#codesign -f -s \"iPhone Developer\" --entitlements \"/Users/ttwj/ClutchPlus/Clutch.entitlements\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Clutch\"\n#if [ \"${PLATFORM_NAME}\" == \"iphoneos\" ]; then\n#/Library/JailCoder/Entitlements/Entitlements.py \"my.company.$#{PROJECT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${#PROJECT_NAME}.xcent\";\n#codesign -f -s \"iPhone Developer\" --entitlements \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/\"\n#fi";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E9410B9C165F0EE700CBDF31 /* Sources */ = {
