@@ -10,6 +10,11 @@
 
 @implementation Application
 
+static NSMutableDictionary* imageCache;
+
++(void) initialize {
+    imageCache = [[NSMutableDictionary alloc] init];
+}
 
 - (id)initWithApplicationDirectory:(NSString *)_applicationDirectory baseName:(NSString*)_baseName name:(NSString *)_name version:(NSString *)_version iconPath:(NSString *)_iconPath
 {
@@ -18,6 +23,7 @@
         name = _name;
         version = _version;
         iconPath = _iconPath;
+        NSLog(@"iconPath!!! %@", iconPath);
         icon = nil;
         applicationBasename = _baseName;   
         
@@ -61,12 +67,11 @@
     return applicationBasename;
 }
 
-- (UIImage *)icon
+
+/*- (NSString *)icon
 {
 #warning This isn't working 100% catches some instances but not others - too tired to figure out why.
-    icon = [UIImage imageWithContentsOfFile:iconPath];
-    bool foundIcon = FALSE;
-    
+
     if ([[NSFileManager defaultManager] fileExistsAtPath:iconPath] == NO){
         //Stupid Developers - let's go hunting
         
@@ -76,20 +81,16 @@
         
         
         NSArray *iconDict = [info objectForKey:@"CFBundleIconFiles"];
-        int i = 0;
-        NSString* iconFile;
         NSLog(@"icon dictionaries %@", iconDict);
-        while (foundIcon == FALSE) {
-            iconFile = [NSString stringWithFormat:@"%@/%@", applicationDirectory, [iconDict objectAtIndex:i]]; // Item 0 should equal Icon.png
-            if (![iconFile hasSuffix:@".png"]) iconFile = [iconFile stringByAppendingString:@".png"];
-            //swag brah
+        
+        NSString* iconFile = [NSString stringWithFormat:@"%@/%@", applicationDirectory,[iconDict objectAtIndex:0]]; // Item 0 should equal Icon.png
+        if (![iconFile hasSuffix:@".png"]) iconFile = [iconFile stringByAppendingString:@".png"];
+        //swag brah
             //NSLog(@"YOLO SWAG 1234 %@", iconFile);
-            if ([[NSFileManager defaultManager] fileExistsAtPath:iconFile]) {
-                icon = [UIImage imageWithContentsOfFile:iconFile];
-                foundIcon = TRUE;
-                return icon;
-            }
-            i++;
+        if ([[NSFileManager defaultManager] fileExistsAtPath:iconFile]) {
+            icon = [UIImage imageWithContentsOfFile:iconFile];
+            foundIcon = TRUE;
+            return icon;
         }
         
         //Some devs are dicks
@@ -118,16 +119,29 @@
             NSLog(@"%@", iconFilePath);
         }
         
-        /*//Useless dev is useless give up and return a placeholder splintr provided. (Thanks splintr)
+        //Useless dev is useless give up and return a placeholder splintr provided. (Thanks splintr)
         if ([[NSFileManager defaultManager] fileExistsAtPath:iconFilePath] == NO)
         {
             icon = [UIImage imageNamed:@"AppPlaceholder"];
         }
-        NSLog(@"%@", iconFilePath);*/
+        NSLog(@"%@", iconFilePath);
 
         
     }
     return icon;
+}*/
+-(UIImage* ) icon {
+    UIImage *cache = [imageCache objectForKey:iconPath];
+    if (cache == nil) {
+        NSLog(@"adding to cache! %@", iconPath);
+        cache = [UIImage imageWithContentsOfFile:iconPath];
+        if (cache != nil) {
+            [imageCache setObject:cache forKey:iconPath];
+    
+        }
+    
+    }
+    return cache;
 }
 
 - (NSString *)iconPath

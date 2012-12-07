@@ -15,11 +15,14 @@
 #import "SettingsTableViewController.h"
 
 @implementation AppDelegate
-@synthesize window, tabBarController;
+@synthesize window, tabBarController, tabBars;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(switchView:) name:@"switchView" object:nil];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    tabBars = [[NSMutableDictionary alloc] init];
     // Override point for customization after application launch.
     UITableViewController *appListTVC, *crackTVC, *settingsTVC;
     UINavigationController *appListNC, *crackNC, *settingsNC;
@@ -29,38 +32,60 @@
         appListTVC.title = @"Apps";
         appListNC = [[UINavigationController alloc] initWithRootViewController:appListTVC];
         appListNC.tabBarItem.image = [UIImage imageNamed:@"Applications.png"];
+        [tabBars setValue:appListNC.tabBarItem forKey:@"Apps"];
         
         crackTVC = [[CrackTableViewController alloc] initWithNibName:@"CrackTableViewController_iPhone" bundle:nil];
         crackTVC.title = @"Crack";
         crackNC = [[UINavigationController alloc] initWithRootViewController:crackTVC];
         crackNC.tabBarItem.image = [UIImage imageNamed:@"Crack.png"];
+        [crackNC.topViewController loadView];
+        [tabBars setValue:crackNC.tabBarItem forKey:@"Crack"];
         
         settingsTVC = [[SettingsTableViewController alloc] initWithNibName:@"SettingsTableViewController_iPhone" bundle:nil];
         settingsTVC.title = @"Settings";
         settingsNC = [[UINavigationController alloc] initWithRootViewController:settingsTVC];
         settingsNC.tabBarItem.image = [UIImage imageNamed:@"Settings.png"];
+        [tabBars setValue:settingsNC.tabBarItem forKey:@"Settings"];
 
     } else {
         appListTVC = [[AppListTableViewController alloc] initWithNibName:@"AppListTableViewController_iPad" bundle:nil];
         appListTVC.title = @"Applications";
         appListNC = [[UINavigationController alloc] initWithRootViewController:appListTVC];
         appListNC.tabBarItem.image = [UIImage imageNamed:@"Applications.png"];
+        [tabBars setValue:appListNC.tabBarItem forKey:@"Apps"];
         
         crackTVC = [[CrackTableViewController alloc] initWithNibName:@"CrackTableViewController_iPad" bundle:nil];
         crackTVC.title = @"Crack";
         crackNC = [[UINavigationController alloc] initWithRootViewController:crackTVC];
         crackNC.tabBarItem.image = [UIImage imageNamed:@"Crack.png"];
+        [tabBars setValue:crackNC.tabBarItem forKey:@"Crack"];
+
         
         settingsTVC = [[SettingsTableViewController alloc] initWithNibName:@"SettingsTableViewController_iPad" bundle:nil];
         settingsTVC.title = @"Settings";
         settingsNC = [[UINavigationController alloc] initWithRootViewController:settingsTVC];
         settingsNC.tabBarItem.image = [UIImage imageNamed:@"Settings.png"];
+        [tabBars setValue:settingsNC.tabBarItem forKey:@"Settings"];
+
     }
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:appListNC, crackNC, settingsNC, nil];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
+}
+#warning not working.. for some reason
+-(void) switchView: (NSNotification*) notifcation {
+    NSLog(@"recieved switch view notification!");
+    NSLog(@"switch view index %@", [[notifcation userInfo] objectForKey:@"index"]);
+    self.tabBarController.selectedIndex = (int) [[notifcation userInfo] objectForKey:@"index"];
+}
+
+-(void) updateBadge: (NSString*) tabBarTag {
+    UITabBarItem* bar = [tabBars objectForKey:tabBarTag];
+    int badge = [bar.badgeValue intValue];  
+    badge++;
+    bar.badgeValue = [NSString stringWithFormat:@"%d", badge];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

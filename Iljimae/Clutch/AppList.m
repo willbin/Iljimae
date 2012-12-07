@@ -17,6 +17,7 @@ NSArray * get_application_list(BOOL sort) {
 	NSString *applicationSubdirectory;
     NSString *applicationIcon;
     NSString *applicationVersion;
+    NSArray* applicationIcons;
     NSDictionary *info;
     
 	NSMutableDictionary *cache = [NSMutableDictionary dictionaryWithContentsOfFile:@"/var/cache/Iljimae.plist"];
@@ -52,6 +53,12 @@ NSArray * get_application_list(BOOL sort) {
                     NSLog(@"new app bros: %@", bundleDisplayName);
                     
 					if ([[NSFileManager defaultManager] fileExistsAtPath:[basePath stringByAppendingFormat:@"%@/%@/SC_Info/", applicationDirectory, applicationSubdirectory]]) {
+                        
+                        if (![[NSFileManager defaultManager] fileExistsAtPath:applicationIcon]) {
+                            applicationIcons = [info objectForKey:@"CFBundleIconFiles"];
+                            applicationIcon = [basePath stringByAppendingFormat:@"%@/%@/%@", applicationDirectory, applicationSubdirectory,[applicationIcons objectAtIndex:0]];
+                            if (![applicationIcon hasSuffix:@".png"]) applicationIcon = [applicationIcon stringByAppendingString:@".png"];
+                        }
                         
 						applicationDetailObject = [NSDictionary dictionaryWithObjectsAndKeys:
                                                    [basePath stringByAppendingFormat:@"%@/", applicationDirectory], @"ApplicationBaseDirectory",

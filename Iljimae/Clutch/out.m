@@ -20,11 +20,7 @@ char *bar_msg = NULL;
 /**
  progress_message places an "active" message for what Clutch is currently doing
  */
-void progress_message(char *msg) {
-    if ([[ClutchConfiguration getValue:@"ProgressBar"] isEqualToString:@"NO"]) {
-        return;
-    }
-    
+void progress_message(char *msg) {    
     if (bar_msg != NULL)
         free(bar_msg);
     bar_msg = malloc(strlen(msg) + 1);

@@ -14,4 +14,8 @@
 
 @property (strong, nonatomic) UITabBarController *tabBarController;
 
+@property (strong, nonatomic) NSMutableDictionary *tabBars;
+
+-(void) updateBadge: (NSString*) tabBarTag;
+
 @end

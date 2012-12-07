@@ -36,7 +36,7 @@ NSString const *path = @"/var/root/Documents/Cracked";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(crackPressed) name:@"crackEvent" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(crackPressed:) name:@"crackEvent" object:nil];
         
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -61,12 +61,23 @@ NSString const *path = @"/var/root/Documents/Cracked";
     NSFileManager *fm = [NSFileManager defaultManager];
     appList = [fm contentsOfDirectoryAtPath:path error:nil];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+    /*UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
                                                      message:[NSString stringWithFormat:@"%@", appList]
                                                     delegate:self
                                            cancelButtonTitle:@"l"
                                            otherButtonTitles:nil, nil];
-    [alert show];
+    [alert show];*/
+    NSLog(@"applist %@", appList);
+}
+
+-(void) crackPressed: (NSNotification*) notification {
+    if ([[notification name] isEqualToString:@"crackEvent"]) {
+        NSLog(@"sucessfully received notification!");
+        
+    }
+    else {
+        NSLog(@"YOLO DID NOT SWAG SO");
+    }
 }
 
 - (void)didReceiveMemoryWarning

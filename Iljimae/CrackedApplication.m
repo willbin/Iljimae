@@ -31,19 +31,12 @@
     // Get the icon, $10 says this doesn't work
     NSArray *iconDict = [info objectForKey:@"CFBundleIconFiles"];
     int i = 0;
-    bool found = FALSE;
+    //bool found = FALSE;
     NSString* iconPath;
     NSLog(@"icon dictionaries %@", iconDict);
-    while (found == FALSE) {
-        iconPath = [NSString stringWithFormat:@"%@/%@", path, [iconDict objectAtIndex:i]]; // Item 0 should equal Icon.png
-        if (![iconPath hasSuffix:@".png"]) iconPath = [iconPath stringByAppendingString:@".png"];
+    iconPath = [NSString stringWithFormat:@"%@/%@", path, [iconDict objectAtIndex:i]]; // Item 0 should equal Icon.png
+    if (![iconPath hasSuffix:@".png"]) iconPath = [iconPath stringByAppendingString:@".png"];
         //swag brah
-        NSLog(@"YOLO SWAG 1234 %@", iconPath);
-        if ([[NSFileManager defaultManager] fileExistsAtPath:iconPath]) {
-            break;
-        }
-        i++;
-    }
     
     NSLog(@"%@", iconPath);
     

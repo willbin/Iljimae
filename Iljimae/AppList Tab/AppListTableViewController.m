@@ -104,7 +104,7 @@
     NSDictionary *dict = [appList objectAtIndex:indexPath.row];
     //Application *app = [appList objectAtIndex:indexPath.row];
     
-    Application *app = [[Application alloc] initWithApplicationDirectory:[dict objectForKey:@"ApplicationDirectory"] baseName:[dict objectForKey:@"ApplicationBaseDirectory"] name:[dict objectForKey:@"ApplicationDisplayName"] version:[dict objectForKey:@"ApplicationVersion"] iconPath:@"ApplicationIcon"];
+    Application *app = [[Application alloc] initWithApplicationDirectory:[dict objectForKey:@"ApplicationDirectory"] baseName:[dict objectForKey:@"ApplicationBaseDirectory"] name:[dict objectForKey:@"ApplicationDisplayName"] version:[dict objectForKey:@"ApplicationVersion"] iconPath:[dict objectForKey:@"ApplicationIcon"]];
     
     if([app icon] == nil){
         cell.imageView.image = [UIImage imageNamed:@"AppPlaceholder.png"];
@@ -135,11 +135,14 @@
     
     UITableViewCellAppList *cell = [tableView cellForRowAtIndexPath:indexPath];
     
-    NSLog(@"Crack");
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    NSLog(@"calling switch view notifcation");
+    NSDictionary* userInfo = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:1], @"index", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"switchView" object:self userInfo:userInfo];
+    NSLog(@"calling crack notification");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"crackEvent" object:self];
+    /*(dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self crackApplication:cell.application];
-    });
+    });*/
     
 }
 
